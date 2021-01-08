@@ -3,7 +3,7 @@ import pandas as pd
 import csv
 from collections import defaultdict
 import random
-app = Flask(__name__, static_folder='static')
+app = Flask(__name__, static_folder='./static')
 
 @app.route('/',methods = ["GET","POST"])
 def initial():

@@ -2,10 +2,14 @@
 <html>
   <head>
     <title>Social Signals in the Wild</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
   </head>
   
   
   <body>
+  <div class="containter">
+    <div class="col-sm-12">
     <h2>
       Social Signals in the Wild
     </h2>
@@ -14,22 +18,28 @@
         Please read the following definitions for each emotion carefully. 
         *Definitions and images are taken from Paul Ekmans’ definitions of emotions and can be found at https://www.paulekman.com/
     </p>
-
+    </div>
+<div class="row">
+    <div class="col">
     <p>Contempt</p>
     <ul>
         <li>Contempt can be described as a feeling of “I am better than you”. It is generally a feeling of superiority but can be felt when someone looks down on those with a higher social status. For example, feeling contemptuous for your boss.</li>
     </ul>
+    </div>
 
+  <div class="col">
     <p>Anger</p>
     <ul>
         <li>Anger can be described as annoyance, frustration, argumentative, bitterness, vengefulness, or fury. Anger can be towards someone or towards yourself.</li>
     </ul>
-
+    </div>
+<div class="col">
     <p>Disgust</p>
     <ul>
         <li>Disgust can be described as dislike, aversion, distaste, repugnance, revulsion, abhorrence, or loathing. Disgust is normally brought upon by something that is offensive, poisonous or contaminated.</li>
     </ul>
-
+</div>
+</div class="row">
     <h3>Task:</h3>
     <p>For each short clip, answer the associated questions related to the emotion definitions above.</p>
     
@@ -40,11 +50,11 @@
 
     <form action="{{ url_for('home')}}" method="POST">
     
-    <input type="submit" value = "Continue" />
+    <input type="submit" value = "Continue" class="btn btn-info" />
     </form>
     
     
-
+  </div>
   </body>
 
 
