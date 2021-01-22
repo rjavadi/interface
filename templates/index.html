@@ -1,164 +1,166 @@
-
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Video Demo </title>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    </head>
-    <body>
-        <h2>
-          Social Signals in the Wild
-        </h2>
-        <h3>Definitions:</h3>
-        <p>
+   <head>
+      <title>Video Demo </title>
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+   </head>
+   <body>
+      <div class="container">
+         <h2>
+            Social Signals in the Wild
+         </h2>
+         <h3>Definitions:</h3>
+         <p>
             Please read the following definitions for each emotion carefully. 
             *Definitions and images are taken from Paul Ekmans’ definitions of emotions and can be found at https://www.paulekman.com/
-        </p>
-    
-        <p>Contempt</p>
-        <ul>
+         </p>
+         <p>Contempt</p>
+         <p>تحقیر</p>
+         <ul>
             <li>Contempt can be described as a feeling of “I am better than you”. It is generally a feeling of superiority but can be felt when someone looks down on those with a higher social status. For example, feeling contemptuous for your boss.</li>
-        </ul>
-    
-        <p>Anger</p>
-        <ul>
+         </ul>
+         <p>Anger</p>
+         <ul>
             <li>Anger can be described as annoyance, frustration, argumentative, bitterness, vengefulness, or fury. Anger can be towards someone or towards yourself.</li>
-        </ul>
-    
-        <p>Disgust</p>
-        <ul>
+         </ul>
+         <p>Disgust</p>
+         <ul>
             <li>Disgust can be described as dislike, aversion, distaste, repugnance, revulsion, abhorrence, or loathing. Disgust is normally brought upon by something that is offensive, poisonous or contaminated.</li>
-        </ul>
-        <h3>Task:</h3>
-        <p>
+         </ul>
+         <h3>Task:</h3>
+         <p>
             Please rate how much you agree or disagree with the following statements regarding the video displayed. 
-        </p>
-        <br>
-
-    <center>
-        <video width="320" height="240" controls>
-            <source src={{ url_for('static', filename= video) }} type = "video/mp4">
-                Your browser does not support the video tag.
-        </video>
-    </center></body>
-
-    {% if feedback %}
-    <p class="text-danger float-right">{{ feedback }}</p>
-    {% endif %}
-    <h2>Social Signal Label</h2>
-    <form method="POST" action="/index" >
-        <table class="table table-striped"><center>
-            <tr><td> Emotion Observed (Please choose one of the following):</td><td>
-                    <input type="radio" id="Anger" name="emotion" value="Anger">
-                    <label for="Anger">Anger</label>
-                    <input type="radio" id="Contempt" name="emotion" value="Contempt">
-                    <label for="Contempt">Contempt</label>
-                    <input type="radio" id="Disgust" name="emotion" value="Disgust">
-                    <label for="Disgust">Disgust</label><br>
-        </center> </table>
-        <tr><td> This video depicts the emotion Contempt </td><td>
-            <input type="radio" id="oneC" name="contempt" value="oneC">
-            <label for="oneC">1 (Strongly Agree)</label>
-            <input type="radio" id="twoC" name="contempt"value="twoC">
-            <label for="twoC">2 (Somewhat Agree)</label>
-            <input type="radio" id="threeC" name="contempt" value="threeC">
-            <label for="threeC">3 (Neutral)</label>
-            <input type="radio" id="fourC" name="contempt" value="fourC">
-            <label for="fourC">4 (Somewhat Disagree) </label>
-            <input type="radio" id="fiveC" name="contempt" value="fiveC">
-            <label for="fiveC">5 (Strongly Disagree)</label>
-        <br>
-         <tr><td> This video depicts the emotion Anger </td><td>
-            <input type="radio" id="oneA" name="anger" value="oneA">
-            <label for="oneA">1 (Strongly Agree)</label>
-            <input type="radio" id="twoA" name="anger"value="twoA">
-            <label for="twoA">2 (Somewhat Agree)</label>
-            <input type="radio" id="threeA" name="anger" value="threeA">
-            <label for="threeA">3 (Neutral)</label>
-            <input type="radio" id="fourA" name="anger" value="fourA">
-            <label for="fourA">4 (Somewhat Disagree)</label>
-            <input type="radio" id="fiveA" name="anger" value="fiveA">
-            <label for="fiveA">5 (Strongly Disagree)</label>
-        <br>
-         <tr><td> This video depicts the emotion Disgust </td><td>
-            <input type="radio" id="oneD" name="disgust" value="oneD">
-            <label for="oneD">1 (Strongly Agree)</label>
-            <input type="radio" id="twoD" name="disgust"value="twoD">
-            <label for="twoD">2 (Somewhat Agree)</label>
-            <input type="radio" id="threeD" name="disgust" value="threeD">
-            <label for="threeD">3 (Neutral)</label>
-            <input type="radio" id="fourD" name="disgust" value="fourD">
-            <label for="fourD">4 (Somewhat Disagree)</label>
-            <input type="radio" id="fiveD" name="disgust" value="fiveD">
-            <label for="fiveD">5 (Strongly Disagree)</label>
-        <br>
-        <tr><td> This video depicts the emotion Annoyed </td><td>
-            <input type="radio" id="oneA" name="annoyed" value="oneA">
-            <label for="oneA">1 (Strongly Agree)</label>
-            <input type="radio" id="twoA" name="annoyed"value="twoA">
-            <label for="twoA">2 (Somewhat Agree)</label>
-            <input type="radio" id="threeA" name="annoyed" value="threeA">
-            <label for="threeA">3 (Neutral)</label>
-            <input type="radio" id="fourA" name="annoyed" value="fourA">
-            <label for="fourA">4 (Somewhat Disagree)</label>
-            <input type="radio" id="fiveA" name="annoyed" value="fiveA">
-            <label for="fiveA">5 (Strongly Disagree)</label>
-        <br><br>
-    
-    <label for="social tags">Select Social Signals:</label><br>
-    <input type ="checkbox" id = "socialsignal1" name = 'socialsignal1' value = 'wrinkled nose'>
-    <label for = "socialsignal1"> Wrinkled Nose</label>
-    <input type ="checkbox" id = "socialsignal2" name = 'socialsignal2' value = 'Smirk (Corner lip raised)'>
-    <label for = "socialsignal2"> Smirk</label>
-    <input type ="checkbox" id = "socialsignal3" name = 'socialsignal3' value = 'Side eye'>
-    <label for = "socialsignal3"> Side Eye</label>
-    <input type ="checkbox" id = "socialsignal4" name = 'socialsignal4' value = 'Calm'>
-    <label for = "socialsignal4"> Calm</label>
-    <input type ="checkbox" id = "socialsignal5" name = 'socialsignal5' value = 'Smiling'>
-    <label for = "socialsignal5"> Smiling</label>
-    <input type ="checkbox" id = "socialsignal6" name = 'socialsignal6' value = 'Eyebrows raised'>
-    <label for = "socialsignal6"> Eyebrows Raised</label>
-    <input type ="checkbox" id = "socialsignal7" name = 'socialsignal7' value = 'Lips pushed together'>
-    <label for = "socialsignal7"> Lips Pushed Together</label><br>
-    <input type ="checkbox" id = "socialsignal9" name = 'socialsignal9' value = 'Eyebrows pushed together'>
-    <label for = "socialsignal9"> Eyebrows Pushed Together</label>
-    <input type ="checkbox" id = "socialsignal10" name = 'socialsignal10' value = 'Snarl'>
-     <label for = "socialsignal10"> Snarl</label>
-     <input type ="checkbox" id = "socialsignal11" name = 'socialsignal11' value = 'Shaking Head'>
-     <label for = "socialsignal11"> Shaking Head</label>
-     <input type ="checkbox" id = "socialsignal12" name = 'socialsignal12' value = 'Arms Crossed'>
-     <label for = "socialsignal12"> Arms Crossed</label>
-     <input type ="checkbox" id = "socialsignal13" name = 'socialsignal13' value = 'Head Turned Away'>
-     <label for = "socialsignal13"> Head Turned Away'</label>
-     <input type ="checkbox" id = "socialsignal14" name = 'socialsignal14' value = 'Squinting'>
-     <label for = "socialsignal14"> Squinting'</label><br><br>
-
-
-
-     <label for="extra">What else do you see (Optional):</label><br>
-     <input type="text" id="extra" name="extra"><br><br>
-
-
-
-    <tr><td>How confident are you about your selections?</td><td>
-                <input type="radio" id="one" name="confidence" value="one">
-                <label for="one">1 (Not Very Confident)</label>
-                <input type="radio" id="two" name="confidence"value="two">
-                <label for="two">2 (Somewhat Not Confident) </label>
-                <input type="radio" id="three" name="confidence" value="three">
-                <label for="three">3 (Neutral)</label>
-                <input type="radio" id="four" name="confidence" value="four">
-                <label for="four">4 (Somewhat Confident)</label>
-                <input type="radio" id="five" name="confidence" value="five">
-                <label for="five">5 (Very Confident)</label>
-            
-    <br>
-    <input type ="submit" value="Submit" />
-    </form>
-    </div>
-
- 
+         </p>
+         <br>
+         <center>
+            <video width="320" height="240" controls>
+               <source src={{ url_for('static', filename= video) }} type = "video/mp4">
+               Your browser does not support the video tag.
+            </video>
+         </center>
+         {% if feedback %}
+         <p class="text-danger float-right">{{ feedback }}</p>
+         {% endif %}
+         <h2>Social Signal Label</h2>
+         <form method="POST" action="/index" >
+            <table class="table table-striped">
+               <center>
+                  <tr>
+                     <td> Emotion Observed (Please choose one of the following):</td>
+                     <td>
+                        <input type="radio" id="Anger" name="emotion" value="Anger">
+                        <label for="Anger">Anger</label>
+                        <input type="radio" id="Contempt" name="emotion" value="Contempt">
+                        <label for="Contempt">Contempt</label>
+                        <input type="radio" id="Disgust" name="emotion" value="Disgust">
+                        <label for="Disgust">Disgust</label><br>
+               </center>
+            </table>
+            <tr>
+               <td> This video depicts the emotion Contempt </td>
+               <td>
+                  <input type="radio" id="oneC" name="contempt" value="oneC">
+                  <label for="oneC">1 (Strongly Agree)</label>
+                  <input type="radio" id="twoC" name="contempt"value="twoC">
+                  <label for="twoC">2 (Somewhat Agree)</label>
+                  <input type="radio" id="threeC" name="contempt" value="threeC">
+                  <label for="threeC">3 (Neutral)</label>
+                  <input type="radio" id="fourC" name="contempt" value="fourC">
+                  <label for="fourC">4 (Somewhat Disagree) </label>
+                  <input type="radio" id="fiveC" name="contempt" value="fiveC">
+                  <label for="fiveC">5 (Strongly Disagree)</label>
+                  <br>
+            <tr>
+               <td> This video depicts the emotion Anger </td>
+               <td>
+                  <input type="radio" id="oneA" name="anger" value="oneA">
+                  <label for="oneA">1 (Strongly Agree)</label>
+                  <input type="radio" id="twoA" name="anger"value="twoA">
+                  <label for="twoA">2 (Somewhat Agree)</label>
+                  <input type="radio" id="threeA" name="anger" value="threeA">
+                  <label for="threeA">3 (Neutral)</label>
+                  <input type="radio" id="fourA" name="anger" value="fourA">
+                  <label for="fourA">4 (Somewhat Disagree)</label>
+                  <input type="radio" id="fiveA" name="anger" value="fiveA">
+                  <label for="fiveA">5 (Strongly Disagree)</label>
+                  <br>
+            <tr>
+               <td> This video depicts the emotion Disgust </td>
+               <td>
+                  <input type="radio" id="oneD" name="disgust" value="oneD">
+                  <label for="oneD">1 (Strongly Agree)</label>
+                  <input type="radio" id="twoD" name="disgust"value="twoD">
+                  <label for="twoD">2 (Somewhat Agree)</label>
+                  <input type="radio" id="threeD" name="disgust" value="threeD">
+                  <label for="threeD">3 (Neutral)</label>
+                  <input type="radio" id="fourD" name="disgust" value="fourD">
+                  <label for="fourD">4 (Somewhat Disagree)</label>
+                  <input type="radio" id="fiveD" name="disgust" value="fiveD">
+                  <label for="fiveD">5 (Strongly Disagree)</label>
+                  <br>
+            <tr>
+               <td> This video depicts the emotion Annoyed </td>
+               <td>
+                  <input type="radio" id="oneA" name="annoyed" value="oneA">
+                  <label for="oneA">1 (Strongly Agree)</label>
+                  <input type="radio" id="twoA" name="annoyed"value="twoA">
+                  <label for="twoA">2 (Somewhat Agree)</label>
+                  <input type="radio" id="threeA" name="annoyed" value="threeA">
+                  <label for="threeA">3 (Neutral)</label>
+                  <input type="radio" id="fourA" name="annoyed" value="fourA">
+                  <label for="fourA">4 (Somewhat Disagree)</label>
+                  <input type="radio" id="fiveA" name="annoyed" value="fiveA">
+                  <label for="fiveA">5 (Strongly Disagree)</label>
+                  <br><br>
+                  <label for="social tags">Select Social Signals:</label><br>
+                  <input type ="checkbox" id = "socialsignal1" name = 'socialsignal1' value = 'wrinkled nose'>
+                  <label for = "socialsignal1"> Wrinkled Nose</label>
+                  <input type ="checkbox" id = "socialsignal2" name = 'socialsignal2' value = 'Smirk (Corner lip raised)'>
+                  <label for = "socialsignal2"> Smirk</label>
+                  <input type ="checkbox" id = "socialsignal3" name = 'socialsignal3' value = 'Side eye'>
+                  <label for = "socialsignal3"> Side Eye</label>
+                  <input type ="checkbox" id = "socialsignal4" name = 'socialsignal4' value = 'Calm'>
+                  <label for = "socialsignal4"> Calm</label>
+                  <input type ="checkbox" id = "socialsignal5" name = 'socialsignal5' value = 'Smiling'>
+                  <label for = "socialsignal5"> Smiling</label>
+                  <input type ="checkbox" id = "socialsignal6" name = 'socialsignal6' value = 'Eyebrows raised'>
+                  <label for = "socialsignal6"> Eyebrows Raised</label>
+                  <input type ="checkbox" id = "socialsignal7" name = 'socialsignal7' value = 'Lips pushed together'>
+                  <label for = "socialsignal7"> Lips Pushed Together</label><br>
+                  <input type ="checkbox" id = "socialsignal9" name = 'socialsignal9' value = 'Eyebrows pushed together'>
+                  <label for = "socialsignal9"> Eyebrows Pushed Together</label>
+                  <input type ="checkbox" id = "socialsignal10" name = 'socialsignal10' value = 'Snarl'>
+                  <label for = "socialsignal10"> Snarl</label>
+                  <input type ="checkbox" id = "socialsignal11" name = 'socialsignal11' value = 'Shaking Head'>
+                  <label for = "socialsignal11"> Shaking Head</label>
+                  <input type ="checkbox" id = "socialsignal12" name = 'socialsignal12' value = 'Arms Crossed'>
+                  <label for = "socialsignal12"> Arms Crossed</label>
+                  <input type ="checkbox" id = "socialsignal13" name = 'socialsignal13' value = 'Head Turned Away'>
+                  <label for = "socialsignal13"> Head Turned Away'</label>
+                  <input type ="checkbox" id = "socialsignal14" name = 'socialsignal14' value = 'Squinting'>
+                  <label for = "socialsignal14"> Squinting'</label><br><br>
+                  <label for="extra">What else do you see (Optional):</label><br>
+                  <input type="text" id="extra" name="extra"><br><br>
+            <tr>
+               <td>How confident are you about your selections?</td>
+               <td>
+                  <input type="radio" id="one" name="confidence" value="one">
+                  <label for="one">1 (Not Very Confident)</label>
+                  <input type="radio" id="two" name="confidence"value="two">
+                  <label for="two">2 (Somewhat Not Confident) </label>
+                  <input type="radio" id="three" name="confidence" value="three">
+                  <label for="three">3 (Neutral)</label>
+                  <input type="radio" id="four" name="confidence" value="four">
+                  <label for="four">4 (Somewhat Confident)</label>
+                  <input type="radio" id="five" name="confidence" value="five">
+                  <label for="five">5 (Very Confident)</label>
+                  <br>
+                  <input type ="submit" value="Submit" class="btn btn-info"/>
+         </form>
+      </div>
+      </div>
+   </body>
 </html>

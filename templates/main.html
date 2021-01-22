@@ -1,67 +1,74 @@
 <!DOCTYPE HTML>
 <html>
-  <head>
+<head>
     <title>Social Signals in the Wild</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-  </head>
-  
-  
-  <body>
-  <div class="containter">
-    <div class="col-sm-12">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container">
+
     <h2>
-      Social Signals in the Wild
+        Social Signals in the Wild
     </h2>
     <h3>Definitions:</h3>
     <p>
-        Please read the following definitions for each emotion carefully. 
-        *Definitions and images are taken from Paul Ekmans’ definitions of emotions and can be found at https://www.paulekman.com/
+        Please read the following definitions for each emotion carefully.
+        *Definitions and images are taken from Paul Ekmans’ definitions of emotions and can be found at
+        <a href="https://www.paulekman.com/">here</a>.
     </p>
-    </div>
-<div class="row">
-    <div class="col">
-    <p>Contempt</p>
-    <ul>
-        <li>Contempt can be described as a feeling of “I am better than you”. It is generally a feeling of superiority but can be felt when someone looks down on those with a higher social status. For example, feeling contemptuous for your boss.</li>
-    </ul>
-    </div>
 
-  <div class="col">
-    <p>Anger</p>
-    <ul>
-        <li>Anger can be described as annoyance, frustration, argumentative, bitterness, vengefulness, or fury. Anger can be towards someone or towards yourself.</li>
-    </ul>
+    <div class="row">
+        <div class="col">
+            <h4>Contempt</h4>
+            <h4>تحقیر</h4>
+            <ul>
+                <li>Contempt can be described as a feeling of “I am better than you”. It is generally a feeling of
+                    superiority but can be felt when someone looks down on those with a higher social status. For
+                    example, feeling contemptuous for your boss.
+                </li>
+            </ul>
+            <ul>
+                تحقیر نوعی احساس خود برتربینی است. عموما به صورت احساس برتری ظاهر می شود اما می تواند زمانی احساس شود که
+                کسی از یک جایگاه اجتماعی بالاتر، با تمسخر با کسی برخورد می کند. به طور مثال، احساس تحقیر از سمت رییستان.
+            </ul>
+        </div>
+        <div class="col">
+            <h4>Anger</h4>
+            <h4>عصبانیت</h4>
+            <ul>
+                <li>Anger can be described as annoyance, frustration, argumentative, bitterness, vengefulness, or fury.
+                    Anger can be towards someone or towards yourself.
+                </li>
+                <li>عصبانیت نوعی ناخشنودی، ناکامی، جدال، تلخی، انتقام یا خشم است.</li>
+            </ul>
+        </div>
+        <div class="col">
+            <h4>Disgust</h4>
+            <h4>انزجار</h4>
+            <ul>
+                <li>Disgust can be described as dislike, aversion, distaste, repugnance, revulsion, abhorrence, or
+                    loathing. Disgust is normally brought upon by something that is offensive, poisonous or
+                    contaminated.
+                </li>
+                <li>انزجار را میتوان به صورت دوست نداشتن و بیزاری، عدم علاقه، تنفر، اشمئزاز، یا بی میلی توصیف کرد.
+                </li>
+            </ul>
+        </div>
     </div>
-<div class="col">
-    <p>Disgust</p>
-    <ul>
-        <li>Disgust can be described as dislike, aversion, distaste, repugnance, revulsion, abhorrence, or loathing. Disgust is normally brought upon by something that is offensive, poisonous or contaminated.</li>
-    </ul>
+    <!--<div class="row">-->
+        <h3>Task:</h3>
+        <p>For each short clip, answer the associated questions related to the emotion definitions above.</p>
+        <div class="bd-example" align="middle">
+            <img src="{{url_for('static', filename='rosielab.png')}}" align="middle"/>
+        </div>
+        <form action="{{ url_for('home')}}" method="POST">
+            <input type="submit" value="Continue" class="btn btn-info"/>
+        </form>
+    <!--</div>-->
 </div>
-</div class="row">
-    <h3>Task:</h3>
-    <p>For each short clip, answer the associated questions related to the emotion definitions above.</p>
-    
-    
-    <div class="bd-example" align="middle">
-    <img src="{{url_for('static', filename='rosielab.png')}}" align="middle" />
-    </div>
-
-    <form action="{{ url_for('home')}}" method="POST">
-    
-    <input type="submit" value = "Continue" class="btn btn-info" />
-    </form>
-    
-    
-  </div>
-  </body>
-
-
-
-  <!-- we can add diclaimer here?-->
-
-
-
-  
+</body>
+<!-- we can add diclaimer here?-->
 </html>
