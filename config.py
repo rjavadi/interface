@@ -8,7 +8,7 @@ class Config:
 
     # FLASK_APP = 'wsgi.py'
     # FLASK_ENV = environ.get('FLASK_ENV')
-    SECRET_KEY = environ.get('_ghFqW3f3w9FcGR1Dzso5Q')
+    SECRET_KEY = '_ghFqW3f3w9FcGR1Dzso5Q' #environ.get('SECRET_KEY')
 
 
     # Static Assets

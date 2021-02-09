@@ -13,11 +13,15 @@ from flask_login import LoginManager, login_url, login_required, current_user, l
 
 ## Setting up app essentials
 app = Flask(__name__, static_folder='./static')
-app.config.from_object(Config)
+app.config.from_object('config.Config')
 # db = SQLAlchemy(app)
-login = LoginManager(app)
-login.login_view = 'login'
+login_manager = LoginManager(app)
+login_manager.login_view = 'login'
 db.init_app(app)
+with app.app_context():
+    db.create_all()
+# db.create_all()
+
 
 @app.route('/', methods=["GET", "POST"])
 def initial():
@@ -35,7 +39,6 @@ def login():
             flash('Invalid username or password')
             return redirect(url_for('login'))
         login_user(user, remember=True)
-    if form.validate_on_submit():
         return redirect(url_for('index'))
     return render_template('login.html')
 
@@ -47,36 +50,64 @@ def home():
     return render_template('home.html')
 
 
+@app.route('/create_user', methods=["GET", "POST"])
+def create_user():
+    if request.method == "POST":
+        user_form = request.form
+        cult = user_form['culture']
+        IDV = user_form['IDV']
+        nat = user_form['country']
+        lang = user_form['language']
+        username = user_form['username']
+        password = user_form['password']
+
+        user = User()
+        user.username = username
+        user.set_password(password)
+        user.culture = cult
+        user.individuality = IDV
+        user.language = lang
+        user.nationality = nat
+        db.session.add(user)
+        db.session.commit()
+        print("User %s created :)" % username)
+        return redirect(url_for('login'))
+
+
 @app.route('/index', methods=["GET", "POST"])
+@login_required
 def index():
     d = None
     if request.method == "POST":  # if the request is post (i.e. new video annotated?)
         # print(request.form)
-        j = request.form
-        k = request.form.getlist('culture')
-
+        form = request.form
         # if statement is for setting up the csv file
         # Write each parameter to a txt file so it can be called later and stored in csv file.
-
-        if len(k) > 0:
-
-            cult = j['culture']
-            IDV = j['IDV']
-            nat = j['country']
-            lang = j['language']
-            with open("store_culture.txt", "a+") as file_object:
-                file_object.seek(0)
-                data = file_object.read(100)
-                if len(data) > 0:
-                    file_object.write("\n")
-                file_object.write(nat)
+        user: User = current_user  ### TODO: is it really USER type or another builtin tyip that we should look real user through it?
+        # TODO: we may need to store annotations in another table
+        with open(user.username + ".txt", "a+") as file_object:
+            file_object.seek(0)
+            data = file_object.read(100)
+            if len(data) > 0:
                 file_object.write("\n")
-                file_object.write(lang)
-                file_object.write("\n")
-                file_object.write(cult)
-                file_object.write("\n")
-                file_object.write(IDV)
+            file_object.write(user.nationality)
+            file_object.write("\n")
+            file_object.write(user.language)
+            file_object.write("\n")# vid = 'video' + str(random.randint(1, 6)) + '.mp4'
+            # with open("store_video.txt", "a+") as file_object:
+            #     file_object.seek(0)
+            #     data = file_object.read(100)
+            #     if len(data) > 0:
+            #         file_object.write("\n")
+            #     file_object.write(vid)
+            #
+            # return render_template('index.html', video=vid)
 
+            file_object.write(user.culture)
+            file_object.write("\n")
+            file_object.write(user.individuality)
+
+            # TODO: use glob to select random file
             vid = 'video' + str(random.randint(1, 6)) + '.mp4'
             with open("store_video.txt", "a+") as file_object:
                 file_object.seek(0)
@@ -137,7 +168,14 @@ def index():
     vid = 'video' + str(random.randint(1, 6)) + '.mp4'
     return render_template('index.html', video=vid)
 
+@login_manager.user_loader
+def load_user(user_id):
+    """Check if user is logged-in on every page load."""
+    if user_id is not None:
+        return User.query.get(user_id)
+    return None
 
 if __name__ == '__main__':
     app.debug = True
+    print("SECRET_KEY:    ", app.config['SECRET_KEY'])
     app.run(host='0.0.0.0', port=5000)

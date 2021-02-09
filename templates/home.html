@@ -39,25 +39,22 @@
         <img src="{{url_for('static', filename='rosielab.png')}}" align="middle"/>
     </div>
 
-    <form action="{{ url_for('index')}}" method="POST">
-        TODO
+    <form action="{{ url_for('create_user')}}" method="POST">
+        <p><b>Please define a simple username and password. This is only to keep the track of your annotation in case
+            you leave the website and will not affect your anonimity.</b></p>
         <!--TODO: action should be redirected to /create_user, and create_user() should redirect to index-->
-        <!--<table>-->
-        <!--<tr><td>Please choose the culture that best represents your own:</td>-->
-        <!--<td>-->
-        <!---->
-        <!--<input type="radio" id="filipino" name="culture" value="filipino">-->
-        <!--<label for="filipino">Filipino </label>-->
-        <!--<input type="radio" id="north american" name="culture" value="north american">-->
-        <!--<label for="north american">North American </label>-->
-        <!--<input type="radio" id="persian" name="culture" value="persian">-->
-        <!--<label for="persian">Persian</label>-->
-        <!--<input type="radio" id="other" name="culture" value="other">-->
-        <!--<label for="other">Other</label>-->
-        <!--<br>-->
-        <!--</td>-->
-        <!--</table> -->
-
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" class="form-control" name="username"
+                   id="username" required="">
+            <div class="invalid-feedback">Oops, you missed this one.</div>
+        </div>
+        <div class="form-group">
+            <label>Password</label>
+            <input type="password" class="form-control" id="password" name="password"
+                   required="" autocomplete="new-password">
+            <div class="invalid-feedback">Enter your password too!</div>
+        </div>
         <p><em></em></p>
         <div class="form-group">
             Please choose the culture that best represents your own:<br>
