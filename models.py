@@ -31,3 +31,16 @@ class User(UserMixin, db.Model):
 
     def __repr__(self):
         return '<User {}>'.format(self.username)
+
+
+class Annotation(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+
+    filename = db.Column(db.String, nullable=False)
+    video_culture = db.Column(db.String)
+    label = db.Column(db.String, nullable=False)
+    social_signals = db.Column(db.String, default='')
+    annotator_culture = db.Column(db.String)
+    annotator_nationality = db.Column(db.String)
+    annotator_language = db.Column(db.String)
+    annotator_individuality = db.Column(db.Integer)

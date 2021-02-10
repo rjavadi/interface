@@ -41,7 +41,9 @@
 
     <form action="{{ url_for('create_user')}}" method="POST">
         <p><b>Please define a simple username and password. This is only to keep the track of your annotation in case
-            you leave the website and will not affect your anonimity.</b></p>
+            you leave the website and will not affect your anonimity. After submitting this form, you'll be redirected to
+            login page to login.
+        </b></p>
         <!--TODO: action should be redirected to /create_user, and create_user() should redirect to index-->
         <div class="form-group">
             <label for="username">Username</label>

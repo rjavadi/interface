@@ -7,7 +7,7 @@ import random
 from models import User
 from config import Config
 from extension import db
-
+import utils
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager, login_url, login_required, current_user, login_user
 
@@ -81,10 +81,10 @@ def index():
     if request.method == "POST":  # if the request is post (i.e. new video annotated?)
         # print(request.form)
         form = request.form
-        # if statement is for setting up the csv file
-        # Write each parameter to a txt file so it can be called later and stored in csv file.
+        # Roya: read user from database to fill csv file and get his annotated videos
         user: User = current_user  ### TODO: is it really USER type or another builtin tyip that we should look real user through it?
         # TODO: we may need to store annotations in another table
+        video = utils.get_random_video(user.culture, user.get_annotated_videos())
         with open(user.username + ".txt", "a+") as file_object:
             file_object.seek(0)
             data = file_object.read(100)
@@ -93,7 +93,8 @@ def index():
             file_object.write(user.nationality)
             file_object.write("\n")
             file_object.write(user.language)
-            file_object.write("\n")# vid = 'video' + str(random.randint(1, 6)) + '.mp4'
+            file_object.write("\n")
+            # vid = 'video' + str(random.randint(1, 6)) + '.mp4'
             # with open("store_video.txt", "a+") as file_object:
             #     file_object.seek(0)
             #     data = file_object.read(100)
@@ -156,6 +157,8 @@ def index():
             writer.writerow(fields)
 
         # store new video so it can be used for the next setup of user input
+
+
         vid = 'video' + str(random.randint(1, 6)) + '.mp4'
         with open("store_video.txt", "a+") as file_object:
             file_object.seek(0)
@@ -167,6 +170,8 @@ def index():
 
     vid = 'video' + str(random.randint(1, 6)) + '.mp4'
     return render_template('index.html', video=vid)
+
+
 
 @login_manager.user_loader
 def load_user(user_id):
