@@ -4,11 +4,10 @@ import pandas as pd
 import csv
 from collections import defaultdict
 import random
-from models import User
+from models import User, Annotation
 from config import Config
 from extension import db
 import utils
-from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager, login_url, login_required, current_user, login_user
 
 ## Setting up app essentials
@@ -34,6 +33,7 @@ def login():
         return redirect(url_for('index'))
     form = request.form
     if request.method == "POST":
+        print("PASSWORD: ", form['password'])
         user = User.query.filter_by(username=form['username']).first()
         if user is None or not user.check_password(form['password']):
             flash('Invalid username or password')
@@ -77,98 +77,47 @@ def create_user():
 @app.route('/index', methods=["GET", "POST"])
 @login_required
 def index():
-    d = None
+    user: User = current_user
     if request.method == "POST":  # if the request is post (i.e. new video annotated?)
         # print(request.form)
         form = request.form
-        # Roya: read user from database to fill csv file and get his annotated videos
-        user: User = current_user  ### TODO: is it really USER type or another builtin tyip that we should look real user through it?
-        # TODO: we may need to store annotations in another table
-        video = utils.get_random_video(user.culture, user.get_annotated_videos())
-        with open(user.username + ".txt", "a+") as file_object:
-            file_object.seek(0)
-            data = file_object.read(100)
-            if len(data) > 0:
-                file_object.write("\n")
-            file_object.write(user.nationality)
-            file_object.write("\n")
-            file_object.write(user.language)
-            file_object.write("\n")
-            # vid = 'video' + str(random.randint(1, 6)) + '.mp4'
-            # with open("store_video.txt", "a+") as file_object:
-            #     file_object.seek(0)
-            #     data = file_object.read(100)
-            #     if len(data) > 0:
-            #         file_object.write("\n")
-            #     file_object.write(vid)
-            #
-            # return render_template('index.html', video=vid)
-
-            file_object.write(user.culture)
-            file_object.write("\n")
-            file_object.write(user.individuality)
-
-            # TODO: use glob to select random file
-            vid = 'video' + str(random.randint(1, 6)) + '.mp4'
-            with open("store_video.txt", "a+") as file_object:
-                file_object.seek(0)
-                data = file_object.read(100)
-                if len(data) > 0:
-                    file_object.write("\n")
-                file_object.write(vid)
-
-            return render_template('index.html', video=vid)
-
-        # this component takes user input after initial setup
-        d = request.form.to_dict()
-        r = open("store_culture.txt", "r")  # read last 4 items stored from the txt file from initial setup
-        # print(r)
-        word = r.read().splitlines()
-        # print(word)
-        p = word[-1]
-        s = word[-2]
-        q = word[-3]
-        t = word[-4]
-        d['culture'] = p
-        d['language'] = s
-        d['country'] = q
-        d['IDV'] = t
-
-        r = open("store_video.txt", "r")
-        n = r.readline()
-        word = n.split()
-        v = word[-1]
-        d['video'] = v
-
-        grp = defaultdict(list)
-        for k, v in d.items():
-            if k[0:3] == "soc":
-                grp['socialsignals'].append(v)
-            else:
-                grp[k] = v
-        print(grp)
-
-        fields = grp.values()
-        # print(fields)
-
-        # writes everything that is in the dictionary to the csv file
-        with open('out.csv', 'a+', newline='') as f:
-            writer = csv.writer(f)
-            writer.writerow(fields)
-
-        # store new video so it can be used for the next setup of user input
 
 
-        vid = 'video' + str(random.randint(1, 6)) + '.mp4'
-        with open("store_video.txt", "a+") as file_object:
-            file_object.seek(0)
-            data = file_object.read(100)
-            if len(data) > 0:
-                file_object.write("\n")
-            file_object.write(vid)
+        annotation: Annotation = Annotation()
+        annotation.emotion = form['emotion']
+        annotation.anger_score = form['anger']
+        annotation.contempt_score = form['contempt']
+        annotation.disgust_score = form['disgust']
+        annotation.annoyed_score = form['annoyed']
+        annotation.filename = form.get("token")
+
+
+        user.add_video(form.get("token"))
+
+        social_signals = ','.join([ss for ss in form.getlist('socialsignal')])
+        extra_ss = form.get("extra")
+        ## TODO: should be tested
+        if len(extra_ss) > 0:
+            social_signals += ',%s' % extra_ss
+        annotation.confidence = form['confidence']
+        annotation.annotator_culture = user.culture
+        annotation.annotator_language = user.language
+        annotation.annotator_individuality = user.individuality
+        annotation.annotator_nationality = user.nationality
+        annotation.social_signals = social_signals
+
+        db.session.add(annotation)
+        db.session.commit()
+        vid = utils.get_random_video(user.culture, user.get_annotated_videos())
+        if vid == "FINISHED":
+            return render_template('thankyou.html')
+        print("Annotation %s created :)" % annotation)
+
+
+
         return render_template('index.html', video=vid)
 
-    vid = 'video' + str(random.randint(1, 6)) + '.mp4'
+    vid = utils.get_random_video(user.culture, user.get_annotated_videos())
     return render_template('index.html', video=vid)
 
 
