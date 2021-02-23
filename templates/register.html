@@ -34,7 +34,7 @@
         </li>
     </ul>
 
-
+ <!--todo: write that all fields are required -->
     <div class="bd-example" align="middle">
         <img src="{{url_for('static', filename='rosielab.png')}}" align="middle"/>
     </div>
@@ -44,33 +44,37 @@
             you leave the website and will not affect your anonimity. After submitting this form, you'll be redirected to
             login page to login.
         </b></p>
-        <!--TODO: action should be redirected to /create_user, and create_user() should redirect to index-->
         <div class="form-group">
             <label for="username">Username</label>
             <input type="text" class="form-control" name="username"
-                   id="username" required="">
+                   id="username" required>
             <div class="invalid-feedback">Oops, you missed this one.</div>
         </div>
         <div class="form-group">
             <label>Password</label>
             <input type="password" class="form-control" id="password" name="password"
-                   required="" autocomplete="new-password">
+                   required="" autocomplete="new-password" required>
             <div class="invalid-feedback">Enter your password too!</div>
         </div>
+
+        <label for="consent"> <input type="checkbox" id="consent" name='consent' value='yes' required>
+            I have read the <a href="../static/consent_form.html" target="_blank"> consent form </a>  and accept it.
+        </label>
+
         <p><em></em></p>
         <div class="form-group">
             Please choose the culture that best represents your own:<br>
             <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="culture" id="filipino" value="filipino">
+                <input class="form-check-input" type="radio" name="culture" id="filipino" value="filipino" required>
                 <label class="form-check-label" for="filipino">Filipino </label>
             </div>
 
             <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="culture" id="north american" value="north american">
+                <input class="form-check-input" type="radio" name="culture" id="north american" value="north american" required>
                 <label class="form-check-label" for="north american">North American </label>
             </div>
             <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="culture" id="persian" value="persian">
+                <input class="form-check-input" type="radio" name="culture" id="persian" value="persian" required>
                 <label class="form-check-label" for="persian">Persian </label>
             </div>
         </div>
@@ -78,46 +82,31 @@
         <div class="form-group">
             How much do you identify as being individualistic? <br>
             <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="IDV" id="oneIDV" value="oneIDV">
+                <input class="form-check-input" type="radio" name="IDV" id="oneIDV" value="oneIDV" required>
                 <label class="form-check-label" for="oneIDV">1 (Individualistic) </label>
             </div>
             <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="IDV" id="twoIDV" value="twoIDV">
+                <input class="form-check-input" type="radio" name="IDV" id="twoIDV" value="twoIDV" required>
                 <label class="form-check-label" for="twoIDV">2 (Somewhat Individualistic) </label>
             </div>
             <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="IDV" id="threeIDV" value="threeIDV">
+                <input class="form-check-input" type="radio" name="IDV" id="threeIDV" value="threeIDV" required>
                 <label class="form-check-label" for="threeIDV">3 (Not Sure) </label>
             </div>
             <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="IDV" id="fourIDV" value="fourIDV">
+                <input class="form-check-input" type="radio" name="IDV" id="fourIDV" value="fourIDV" required>
                 <label class="form-check-label" for="fourIDV">4 (Somewhat Collectivist) </label>
             </div>
             <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="IDV" id="fiveIDV" value="fiveIDV">
+                <input class="form-check-input" type="radio" name="IDV" id="fiveIDV" value="fiveIDV" required>
                 <label class="form-check-label" for="fiveIDV">5 (Collectivist) </label>
             </div>
         </div>
 
-        <!--<tr>-->
-        <!--<td>How much do you identify as being individualistic?</td>-->
-        <!--<td>-->
-        <!--<input type="radio" id="oneIDV" name="IDV" value="oneIDV">-->
-        <!--<label for="oneIDV">1 (Individualistic)</label>-->
-        <!--<input type="radio" id="twoIDV" name="IDV" value="twoIDV">-->
-        <!--<label for="twoIDV">2 (Somewhat Individualistic)</label>-->
-        <!--<input type="radio" id="threeIDV" name="IDV" value="threeIDV">-->
-        <!--<label for="threeIDV">3 (Not Sure)</label>-->
-        <!--<input type="radio" id="fourIDV" name="IDV" value="fourIDV">-->
-        <!--<label for="fourIDV">4 (Somewhat Collectivist) </label>-->
-        <!--<input type="radio" id="fiveIDV" name="IDV" value="fiveIDV">-->
-        <!--<label for="fiveIDV">5 (Collectivist)</label>-->
-        <!--<br>-->
-
         <div class="form-group">
             <!--<p>Nationality: </p>-->
             <label for="country">Nationality:</label>
-            <select class="form-control" id="country" name="country">
+            <select class="form-control" id="country" name="country" required>
                 <option value="Afganistan">Afghanistan</option>
                 <option value="Albania">Albania</option>
                 <option value="Algeria">Algeria</option>
@@ -370,7 +359,7 @@
         <div class="form-group">
             <!--<p>Language (if you speak more than one, give the language you identify with the most): </p>-->
             <label for="language">Language (if you speak more than one, give the language you identify with the most):</label>
-            <select class="form-control" id="language" name="language">
+            <select class="form-control" id="language" name="language" required>
                 <option value="af">Afrikaans</option>
                 <option value="sq">Albanian - shqip</option>
                 <option value="am">Amharic - አማርኛ</option>
@@ -516,7 +505,7 @@
             </select>
             <br>
             <div class="row">
-                <input type="submit" value="Go to videos" class="btn btn-info"/>
+                <input type="submit" value="Register Me!" class="btn btn-info"/>
             </div>
         </div>
     </form>

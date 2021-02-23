@@ -4,11 +4,11 @@ import pandas as pd
 import csv
 from collections import defaultdict
 import random
-from models import User, Annotation
+from models import User, Annotation, DrawEmail
 from config import Config
 from extension import db
 import utils
-from flask_login import LoginManager, login_url, login_required, current_user, login_user
+from flask_login import LoginManager, login_url, login_required, current_user, login_user, logout_user
 
 ## Setting up app essentials
 app = Flask(__name__, static_folder='./static')
@@ -24,6 +24,9 @@ with app.app_context():
 
 @app.route('/', methods=["GET", "POST"])
 def initial():
+    # TODO: remove these lines
+    if current_user.is_authenticated:
+        logout_user()
     return render_template('main.html')
 
 
@@ -43,11 +46,11 @@ def login():
     return render_template('login.html')
 
 
-@app.route('/home', methods=["GET", "POST"])
+@app.route('/register', methods=["GET", "POST"])
 def home():
     if request.method == "POST":
-        return render_template('home.html')
-    return render_template('home.html')
+        return render_template('register.html')
+    return render_template('register.html')
 
 
 @app.route('/create_user', methods=["GET", "POST"])
@@ -60,6 +63,7 @@ def create_user():
         lang = user_form['language']
         username = user_form['username']
         password = user_form['password']
+        consent_confirm = user_form['consent']
 
         user = User()
         user.username = username
@@ -128,6 +132,19 @@ def load_user(user_id):
     if user_id is not None:
         return User.query.get(user_id)
     return None
+
+@app.route('/enter_draw', methods=["GET", "POST"])
+@login_required
+def index():
+    if request.method == "POST":  # if the request is post (i.e. new video annotated?)
+        # print(request.form)
+        email = request.form['email']
+        draw = DrawEmail()
+        draw.email = email
+        db.session.add(draw)
+        db.session.commit()
+        # TODO: return this page with a message that shows the user has entered email successfully.
+
 
 if __name__ == '__main__':
     app.debug = True

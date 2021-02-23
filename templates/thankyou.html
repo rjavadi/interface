@@ -6,7 +6,24 @@
 
 </head>
 <body>
-        <h2>You have annotated all videos!!!</h2>
-        <h2>Thank you for participating in our research!!</h2>
+
+
+<div class="alert alert-success" role="alert">
+    <h2 class="alert-heading">Well done!</h2>
+    <h4>Aww yeah, you successfully annotated all videos!!! </h4>
+    <hr>
+    <p class="mb-0">Thank you for participating in our research! </p>
+    <p> Please enter your email if you wish to enter the draw to win a 50$ gift card:</p>
+
+    <form action="{{ url_for('enter_draw')}}" method="POST">
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" form-control name="email"
+                   id="email" required>
+
+        </div>
+    </form>
+
+</div>
 </body>
 </html>
