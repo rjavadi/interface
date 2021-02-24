@@ -122,6 +122,8 @@ def index():
         return render_template('index.html', video=vid)
 
     vid = utils.get_random_video(user.culture, user.get_annotated_videos())
+    if vid == "FINISHED":
+        return render_template('thankyou.html')
     return render_template('index.html', video=vid)
 
 
@@ -144,7 +146,7 @@ def enter_draw():
         db.session.add(draw)
         db.session.commit()
         # TODO: return this page with a message that shows the user has entered email successfully.
-
+        return render_template('thankyou.html', message="You have successfully submitted your email!")
 
 if __name__ == '__main__':
     app.debug = True
