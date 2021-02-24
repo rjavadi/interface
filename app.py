@@ -135,7 +135,7 @@ def load_user(user_id):
 
 @app.route('/enter_draw', methods=["GET", "POST"])
 @login_required
-def index():
+def enter_draw():
     if request.method == "POST":  # if the request is post (i.e. new video annotated?)
         # print(request.form)
         email = request.form['email']
