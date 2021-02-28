@@ -49,6 +49,7 @@ def login():
 @app.route('/register', methods=["GET", "POST"])
 def home():
     if request.method == "POST":
+        print("here")
         return render_template('register.html')
     return render_template('register.html')
 
@@ -63,6 +64,25 @@ def create_user():
         lang = user_form['language']
         username = user_form['username']
         password = user_form['password']
+        rvs_1 = user_form['rvs_1']
+        rvs_2 = user_form['rvs_1']
+        rvs_3 = user_form['rvs_3']
+        rvs_4 = user_form['rvs_4']
+        rvs_5 = user_form['rvs_5']
+        rvs_6 = user_form['rvs_6']
+        rvs_7 = user_form['rvs_7']
+        rvs_8 = user_form['rvs_8']
+        rvs_9 = user_form['rvs_9']
+        rvs_10 = user_form['rvs_10']
+        rvs_11 = user_form['rvs_11']
+        rvs_12 = user_form['rvs_12']
+        rvs_13 = user_form['rvs_13']
+        rvs_14 = user_form['rvs_14']
+        rvs_15 = user_form['rvs_15']
+        rvs_16 = user_form['rvs_16']
+        rvs_17 = user_form['rvs_17']
+        rvs_18 = user_form['rvs_18']
+
         consent_confirm = user_form['consent']
 
         user = User()
@@ -72,6 +92,9 @@ def create_user():
         user.individuality = IDV
         user.language = lang
         user.nationality = nat
+        user.rvs_1 = rvs_1
+        user.rvs_2 = rvs_2
+        user.rvs_3 = rvs_3
         db.session.add(user)
         db.session.commit()
         print("User %s created :)" % username)
@@ -94,8 +117,6 @@ def index():
         annotation.disgust_score = form['disgust']
         annotation.annoyed_score = form['annoyed']
         annotation.filename = form.get("token")
-
-
         user.add_video(form.get("token"))
 
         social_signals = ','.join([ss for ss in form.getlist('socialsignal')])
