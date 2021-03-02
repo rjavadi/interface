@@ -11,33 +11,12 @@
 
 
 <body>
-<div class="container">
-    <h3>Definitions:</h3>
-    <p>
-        Please read the following definitions for culture carefully. Below you will be asked questions regarding your
-        cultural identity.
-    </p>
-    <p>Individualism/Collectivism</p>
-    <ul>
-        <li>The extent that individuals are interspersed in groups</li>
-    </ul>
-
-    <p>Individualism (North American)</p>
-    <ul>
-        <li>Independent from groups and to prioritize oneself. North American culture is largely individualistic.</li>
-    </ul>
-
-    <p>Collectivist (Persian and Filipino)</p>
-    <ul>
-        <li> Prioritizing the group over oneself and others. Perisan culture is moderately collectivist as it shows more
-            independant traits, while Filipino culture is high collectivist.
-        </li>
-    </ul>
-
+<div class="container justify-content-center">
+    <h1> Registration Form </h1>
     <!--todo: write that all fields are required -->
-    <div class="bd-example" align="middle">
-        <img src="{{ url_for('static', filename='rosielab.png') }}" align="middle"/>
-    </div>
+{#    <div class="bd-example" align="middle">#}
+{#        <img src="{{ url_for('static', filename='rosielab.png') }}" align="middle"/>#}
+{#    </div>#}
 
     <form action="{{ url_for('create_user') }}" method="POST">
         <p><b>Please define a simple username and password. This is only to keep the track of your annotation in case
@@ -81,49 +60,66 @@
         </div>-->
 
         Please indicate how much you are related to each of these cultures:
-        <div class="row">
+        <div class="row justify-content-center">
             <div class="form-group col-md-3">
                 <label for="na_cult">North American: </label>
-                <input type="range" class="form-control-range" id="na_cult" name="na_culture" min="0" max="5"
+                <input type="range" value="0" class="form-control-range" id="na_cult" name="na_culture" min="0" max="5"
                        required>
             </div>
             <div class="form-group col-md-3">
                 <label for="pr_cult">Persian: </label>
-                <input type="range" class="form-control-range" id="pr_cult" name="persian_culture" min="0" max="5"
+                <input type="range" value="0" class="form-control-range" id="pr_cult" name="persian_culture" min="0" max="5"
                        required>
             </div>
             <div class="form-group col-md-3">
                 <label for="fp_cult">Filipino: </label>
-                <input type="range" class="form-control-range" id="fp_cult" name="filipino_culture" min="0" max="5"
+                <input type="range" value="0" class="form-control-range" id="fp_cult" name="filipino_culture" min="0" max="5"
                        required>
             </div>
         </div>
 
-        <div class="form-group">
-            How much do you identify as being individualistic? <br>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="IDV" id="oneIDV" value="oneIDV" required>
-                <label class="form-check-label" for="oneIDV">1 (Individualistic) </label>
-            </div>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="IDV" id="twoIDV" value="twoIDV" required>
-                <label class="form-check-label" for="twoIDV">2 (Somewhat Individualistic) </label>
-            </div>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="IDV" id="threeIDV" value="threeIDV" required>
-                <label class="form-check-label" for="threeIDV">3 (Not Sure) </label>
-            </div>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="IDV" id="fourIDV" value="fourIDV" required>
-                <label class="form-check-label" for="fourIDV">4 (Somewhat Collectivist) </label>
-            </div>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="IDV" id="fiveIDV" value="fiveIDV" required>
-                <label class="form-check-label" for="fiveIDV">5 (Collectivist) </label>
+        <div class="row justify-content-center">
+            <div class="alert alert-info col-lg-8" role="alert">
+                <h2 class="alert-heading">Individualism vs Collectivism</h2>
+                <h4>Please read the following the definition and answer the question below: </h4>
+                <hr>
+                <p>
+                    Individualism versus collectivism: Individualism is viewed as a situation in which people are supposed
+                    to look after themselves and their immediate family only, and collectivism is viewed as a situation in
+                    which people belong to in-groups and are supposed to look after them in exchange for loyalty. This
+                    dimension is related to the individual’s dependence on the group, or his or her self-concept as “I” or “we”. (Hofstede, 2000)
+                </p>
+
+
+
             </div>
         </div>
 
         <div class="form-group">
+            According to the above description, how much do you identify as being individualistic? <br>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="IDV" id="oneIDV" value="1" required>
+                <label class="form-check-label" for="oneIDV" required>1 (Individualistic) </label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="IDV" id="twoIDV" value="2" required>
+                <label class="form-check-label" for="twoIDV" required>2 (Somewhat Individualistic) </label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="IDV" id="threeIDV" value="3" required>
+                <label class="form-check-label" for="threeIDV" required>3 (Not Sure) </label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="IDV" id="fourIDV" value="4" required>
+                <label class="form-check-label" for="fourIDV" required>4 (Somewhat Collectivist) </label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="IDV" id="fiveIDV" value="5" required>
+                <label class="form-check-label" for="fiveIDV" required>5 (Collectivist) </label>
+            </div>
+        </div>
+
+        <!--<div class="form-group">
             Rokeach Value Survey <br>
             <div class="form-group">
                 <label for="rvs_1">A comfortable Life (i.e., a prosperous life)</label>
@@ -216,7 +212,7 @@
                        id="rvs_18" required>
             </div>
 
-        </div>
+        </div> -->
 
        <!--  <div class="form-group">
 
@@ -474,20 +470,20 @@
 
         <!--<p>Language (if you speak more than one, give the language you identify with the most): </p>-->
         Please indicate how familiar you are with each of these languages:
-        <div class="row">
+        <div class="row justify-content-center">
             <div class="form-group col-md-3">
                 <label for="eng_lang">English: </label>
-                <input type="range" class="form-control-range" id="eng_lang" name="english_lang" min="0" max="5"
+                <input type="range" value="0" class="form-control-range" id="eng_lang" name="english_lang" min="0" max="5"
                        required>
             </div>
             <div class="form-group col-md-3">
                 <label for="pr">Persian: </label>
-                <input type="range" class="form-control-range" id="pr" name="persian_lang" min="0" max="5"
+                <input type="range" value="0" class="form-control-range" id="pr" name="persian_lang" min="0" max="5"
                        required>
             </div>
             <div class="form-group col-md-3">
                 <label for="filipino_lang">Filipino: </label>
-                <input type="range" class="form-control-range" id="filipino_lang" name="filipino_lang" min="0" max="5"
+                <input type="range" value="0" class="form-control-range" id="filipino_lang" name="filipino_lang" min="0" max="5"
                        required>
             </div>
         </div>

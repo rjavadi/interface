@@ -59,7 +59,7 @@ def create_user():
     if request.method == "POST":
         user_form = request.form
         # cult = user_form['culture']
-        # IDV = user_form['IDV']
+        IDV = user_form['IDV']
         # nat = user_form['country']
         # lang = user_form['language']
         print(user_form['na_culture'])
@@ -106,7 +106,7 @@ def create_user():
         elif int(user_form['persian_lang']) < int(user_form['filipino_lang']):
             user.language = 'filipino'
         # user.culture = cult
-        # user.individuality = IDV
+        user.individuality = IDV
         # user.language = lang
         # user.nationality = nat
         # user.rvs_1 = rvs_1

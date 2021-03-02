@@ -86,15 +86,16 @@
     {% endif %}
     <h2>Social Signal Label</h2>
     <form method="POST" action="/index">
-
+        <div class="row justify-content-center">
             <div class="col-xs-3">
-            <video width="640" height="480" controls>
-                <source src={{ url_for(
+                <video width="640" height="480" controls>
+                    <source src={{ url_for(
                 'static', filename= video) }} type
-                = "video/mp4">
-                Your browser does not support the video tag.
+                    = "video/mp4">
+                    Your browser does not support the video tag.
 
-            </video>
+                </video>
+            </div>
         </div>
         <div class="col-xs-9">
             <table class="table">
@@ -230,7 +231,8 @@
                 </td>
             </tr>
             <!-- get video name -->
-            <div hidden><input type="text" id="token" name="token" value={{ video }}></div>
+
+            <div><span>In case you need to re-annotate the video, send video name to research personel</span><input type="text" class="form-inline" id="token" readonly name="token" value={{ video }}></div>
             <tr style="background-color:#faf8cb">
                 <td> This video depicts the emotion Disgust</td>
                 <td>
