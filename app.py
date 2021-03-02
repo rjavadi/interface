@@ -60,8 +60,12 @@ def create_user():
         user_form = request.form
         cult = user_form['culture']
         IDV = user_form['IDV']
-        nat = user_form['country']
-        lang = user_form['language']
+        # nat = user_form['country']
+        # lang = user_form['language']
+        print(user_form['na_culture'])
+        print(user_form['persian_culture'])
+        print(user_form['filipino_culture'])
+        print(user_form['filipino_lang'])
         username = user_form['username']
         password = user_form['password']
         rvs_1 = user_form['rvs_1']
@@ -90,11 +94,11 @@ def create_user():
         user.set_password(password)
         user.culture = cult
         user.individuality = IDV
-        user.language = lang
-        user.nationality = nat
-        user.rvs_1 = rvs_1
-        user.rvs_2 = rvs_2
-        user.rvs_3 = rvs_3
+        # user.language = lang
+        # user.nationality = nat
+        # user.rvs_1 = rvs_1
+        # user.rvs_2 = rvs_2
+        # user.rvs_3 = rvs_3
         db.session.add(user)
         db.session.commit()
         print("User %s created :)" % username)

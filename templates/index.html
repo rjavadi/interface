@@ -17,31 +17,46 @@
         <div class="col">
             <h4>Contempt</h4>
             <h4>تحقیر</h4>
+            <h4>Paghamak</h4>
             <ul>
-                <li>Contempt can be described as a feeling of “I am better than you”. It is generally a feeling of
+                <li><i class="flag flag-canada"></i>Contempt can be described as a feeling of “I am better than you”. It is generally a feeling of
                     superiority but can be felt when someone looks down on those with a higher social status. For
                     example, feeling contemptuous for your boss.
                 </li>
-            </ul>
-            <ul>
-                تحقیر نوعی احساس خود برتربینی است. عموما به صورت احساس برتری ظاهر می شود اما می تواند زمانی احساس شود که
-                کسی با تمسخر با کسی برخورد می کند. به طور مثال، احساس تحقیر از سمت رییستان. یا یک لبخند کنایه آمیز از
-                دوستتان.
+                <li>
+                    <i class="flag flag-iran"></i>تحقیر نوعی احساس خود برتربینی است. عموما به صورت احساس برتری ظاهر می شود اما می تواند زمانی احساس
+                    شود که
+                    کسی با تمسخر با کسی برخورد می کند. به طور مثال، احساس تحقیر از سمت رییستان. یا یک لبخند کنایه آمیز
+                    از
+                    دوستتان.
+                </li>
+                <li>
+                    Paghamak ay maaaring ilarawan ng pakiramdam na "mas maigi ako sa iyo". Ito ay karaniwang
+                    ginagamit sa pakiramdam ng pagmamalaki ngunit maaari rin sa pakiramdam ng paglait sa mga nasa mas
+                    mataas
+                    na antas ng lipunan. Halimbawa ay ang paghamak sa amo o boss.
+                </li>
+
             </ul>
         </div>
         <div class="col">
             <h4>Anger</h4>
             <h4>عصبانیت</h4>
+            <h4>Galit</h4>
             <ul>
                 <li>Anger can be described as annoyance, frustration, argumentative, bitterness, vengefulness, or fury.
                     Anger can be towards someone or towards yourself.
                 </li>
                 <li>عصبانیت نوعی ناخشنودی، ناکامی، جدال، تلخی، انتقام یا خشم است.</li>
+                <li>Galit ay maaaring ilarawan ng pagkainis, pagkabigo, pagtatalo, kapaitan, paghihiganti, o
+                    pagngangalit. Galit ay maaaring nakaukol sa ibang tao o sa sarili.
+                </li>
             </ul>
         </div>
         <div class="col">
             <h4>Disgust</h4>
             <h4>انزجار</h4>
+            <h4>Pagkasuya</h4>
             <ul>
                 <li>Disgust can be described as dislike, aversion, distaste, repugnance, revulsion, abhorrence, or
                     loathing. Disgust is normally brought upon by something that is offensive, poisonous or
@@ -49,52 +64,146 @@
                 </li>
                 <li>انزجار را میتوان به صورت دوست نداشتن و بیزاری، عدم علاقه، تنفر، اشمئزاز، یا بی میلی توصیف کرد.
                 </li>
+                <li>
+                    Pagkasuya ay maaaring ilarawan ng di pagkagusto, kaayawan, kawalan ng gana, pagkasuklam, pandidiri,
+                    pagkapoot o pagkamuhi. Pagkasuya ay karaniwang nagmumula sa bagay na nakakasakit, nakakalason o
+                    kontaminado.
+                </li>
             </ul>
         </div>
     </div>
     <h3>Task:</h3>
-<!--todo: write that all fields are required -->
-    <h4 class="danger">Please note that all fields are required. In case you faced an error, use browser back button to be back to this page. </h4>
+    <!--todo: write that all fields are required -->
+    <h4 class="danger">Please note that all fields are required. In case you faced an error, use browser back button to
+        be back to this page. </h4>
     <p>
         Please rate how much you agree or disagree with the following statements regarding the video displayed.
     </p>
     <br>
-    <div class="col-xs-5">
-        <video width="320" height="240" controls>
-            <source src={{ url_for(
-            'static', filename= video) }} type = "video/mp4">
-            Your browser does not support the video tag.
 
-        </video>
-    </div>
     {% if feedback %}
-    <p class="text-danger float-right">{{ feedback }}</p>
+        <p class="text-danger float-right">{{ feedback }}</p>
     {% endif %}
     <h2>Social Signal Label</h2>
     <form method="POST" action="/index">
+
+            <div class="col-xs-3">
+            <video width="640" height="480" controls>
+                <source src={{ url_for(
+                'static', filename= video) }} type
+                = "video/mp4">
+                Your browser does not support the video tag.
+
+            </video>
+        </div>
+        <div class="col-xs-9">
+            <table class="table">
+                <tr style="background-color:#a8ddf3">
+                <td>
+                    <label for="social tags"><h5>Select facial expressions:</h5></label><br>
+                </td>
+                <td>
+                    <label for="socialsignal1"> <input type="checkbox" id="socialsignal1" name='socialsignal'
+                                                       value='wrinkled nose'> Wrinkled Nose / بینی چین خورده / Ilong na may kunot</label>
+
+                    <label for="socialsignal2"> <input type="checkbox" id="socialsignal2" name='socialsignal'
+                                                       value='Smirk (Corner lip raised)'> Smirk / پوزخند / Ngisi</label>
+
+                    <label for="socialsignal3"> <input type="checkbox" id="socialsignal3" name='socialsignal'
+                                                       value='Side eye'> Side Eye / از گوشه چشم نگاه کردن / Mata sa gilid</label>
+
+                    <label for="socialsignal4"> <input type="checkbox" id="socialsignal4" name='socialsignal'
+                                                       value='Calm'> Calm / خونسرد / Mahinahon </label> <br>
+
+                    <label for="socialsignal5"> <input type="checkbox" id="socialsignal5" name='socialsignal'
+                                                       value='Smiling'> Smiling / لبخند / Ngumingiti</label>
+
+                    <label for="socialsignal6"> <input type="checkbox" id="socialsignal6" name='socialsignal'
+                                                       value='Eyebrows raised'> Eyebrows Raised / ابروی بالابرده / Nakataas ang kilay</label>
+                    <br>
+
+                    <label for="socialsignal7"> <input type="checkbox" id="socialsignal7" name='socialsignal'
+                                                       value='Lips pressed together'> Lips pressed Together/ لبهای به هم
+                        فشرده / Nakasara nang mariin ang mga labi</label>
+                    <label for="socialsignal8"> <input type="checkbox" id="socialsignal8" name='socialsignal'
+                                                       value='Downturned Lips'> Downturned Lips / لبهای به سمت پایین جمع
+                        شده / Pabagsak na mga labi</label>
+                </td>
+                <td>
+                    <label for="socialsignal9"> <input type="checkbox" id="socialsignal9" name='socialsignal'
+                                                       value='Eyebrows pushed together'> Eyebrows Pushed Together /
+                        ابروهای گره خورده  / Magkasalubong ang kilay</label>
+                    <br>
+                    <label for="socialsignal10"> <input type="checkbox" id="socialsignal10" name='socialsignal'
+                                                        value='Snarl'> Snarl / دندان به هم فشردن / Nakaangil</label>
+
+                    <label for="socialsignal11"> <input type="checkbox" id="socialsignal11" name='socialsignal'
+                                                        value='Shaking Head'> Shaking Head / تکان دادن سر / Napapailing ang ulo</label>
+
+                    <label for="socialsignal12"> <input type="checkbox" id="socialsignal12" name='socialsignal'
+                                                        value='Arms Crossed'> Arms Crossed / دست به سینه / Naka krus ang braso</label>
+                    <br>
+                    <label for="socialsignal13"> <input type="checkbox" id="socialsignal13" name='socialsignal'
+                                                        value='Head Turned Away'> Head Turned Away / سر
+                        برگرداندن / Nakabiling ang ulo</label>
+
+                    <label for="socialsignal14"> <input type="checkbox" id="socialsignal14" name='socialsignal'
+                                                        value='Squinting'> Squinting / تنگ کردن چشمها / Nanliliit ang mga mata</label>
+
+                    <label for="socialsignal18"> <input type="checkbox" id="socialsignal18" name='socialsignal'
+                                                        value='Pressing Lips'> Pressing Lips / به هم فشردن لبها / Madiin ang sara ng labi </label>
+
+                    <label for="socialsignal16"> <input type="checkbox" id="socialsignal16" name='socialsignal'
+                                                        value='Curling upper lip'> Curling Upper Lip / کج کردن لب بالایی / Nakatikwas ang nguso</label>
+                    <label for="socialsignal17"> <input type="checkbox" id="socialsignal17" name='socialsignal'
+                                                        value='Closing Eyes'> Closing Eyes / بستن چشمها / Nagsasara ang mata</label>
+                    <br>
+                    <label for="socialsignal15"> <input type="checkbox" id="socialsignal15" name='socialsignal'
+                                                        value='Mocking'> Mocking / ادا درآوردن  / Nanunuya</label>
+
+
+                    <br><br>
+
+                    <label for="extra">What else do you see (Optional):</label><br>
+
+
+                    <input type="text" id="extra" name="extra"><br><br>
+                </td>
+            </tr>
+            </table>
+        </div>
+
         <table class="table table-striped">
-            <tr style="background-color:#FF9AA2" >
+            <tr style="background-color:#FF9AA2">
 
                 <td> Emotion Observed (Please choose one of the following):</td>
                 <td>
 
-                    <label class="radio-inline" for="Anger"> <input type="radio" id="Anger" name="emotion" value="anger" required> Anger</label>
+                    <label class="radio-inline" for="Anger"> <input type="radio" id="Anger" name="emotion" value="anger"
+                                                                    required> Anger</label>
 
-                    <label class="radio-inline" for="Contempt"><input type="radio" id="Contempt" name="emotion" value="contempt" required> Contempt</label>
+                    <label class="radio-inline" for="Contempt"><input type="radio" id="Contempt" name="emotion"
+                                                                      value="contempt" required> Contempt</label>
 
-                    <label class="radio-inline" for="Disgust"> <input type="radio" id="Disgust" name="emotion" value="disgust" required> Disgust</label><br>
+                    <label class="radio-inline" for="Disgust"> <input type="radio" id="Disgust" name="emotion"
+                                                                      value="disgust" required> Disgust</label><br>
                 </td>
             </tr>
-            <tr style="background-color:#FFB7B2" >
+            <tr style="background-color:#FFB7B2">
                 <td> This video depicts the emotion Contempt</td>
                 <td>
 
-                    <label class="radio-inline" for="oneC"><input type="radio" id="oneC" name="contempt" value="1" required> 1 (Strongly Agree)</label>
+                    <label class="radio-inline" for="oneC"><input type="radio" id="oneC" name="contempt" value="1"
+                                                                  required> 1 (Strongly Agree)</label>
 
-                    <label class="radio-inline" for="twoC"><input type="radio" id="twoC" name="contempt" value="2" required> 2 (Somewhat Agree)</label>
-                    <label class="radio-inline" for="threeC"><input type="radio" id="threeC" name="contempt" value="3" required> 3 (Neutral)</label>
-                    <label class="radio-inline" for="fourC"> <input type="radio" id="fourC" name="contempt" value="4" required> 4 (Somewhat Disagree) </label>
-                    <label class="radio-inline" for="fiveC"> <input type="radio" id="fiveC" name="contempt" value="5" required>
+                    <label class="radio-inline" for="twoC"><input type="radio" id="twoC" name="contempt" value="2"
+                                                                  required> 2 (Somewhat Agree)</label>
+                    <label class="radio-inline" for="threeC"><input type="radio" id="threeC" name="contempt" value="3"
+                                                                    required> 3 (Neutral)</label>
+                    <label class="radio-inline" for="fourC"> <input type="radio" id="fourC" name="contempt" value="4"
+                                                                    required> 4 (Somewhat Disagree) </label>
+                    <label class="radio-inline" for="fiveC"> <input type="radio" id="fiveC" name="contempt" value="5"
+                                                                    required>
                         5 (Strongly Disagree)</label>
                     <br>
                 </td>
@@ -102,48 +211,63 @@
             <tr style="background-color:#FFDAC1">
                 <td> This video depicts the emotion Anger</td>
                 <td>
-                    
-                    <label class="radio-inline" for="oneA"><input type="radio" id="oneA" name="anger" value="1" required> 1 (Strongly Agree)</label>
-                    
-                    <label class="radio-inline" for="twoA"> <input type="radio" id="twoA" name="anger" value="2" required> 2 (Somewhat Agree)</label>
-                    
-                    <label class="radio-inline" for="threeA"> <input type="radio" id="threeA" name="anger" value="3" required> 3 (Neutral)</label>
-                    
-                    <label class="radio-inline" for="fourA"> <input type="radio" id="fourA" name="anger" value="4" required> 4 (Somewhat Disagree)</label>
-                    
-                    <label class="radio-inline" for="fiveA"> <input type="radio" id="fiveA" name="anger" value="5" required> 5 (Strongly Disagree)</label>
+
+                    <label class="radio-inline" for="oneA"><input type="radio" id="oneA" name="anger" value="1"
+                                                                  required> 1 (Strongly Agree)</label>
+
+                    <label class="radio-inline" for="twoA"> <input type="radio" id="twoA" name="anger" value="2"
+                                                                   required> 2 (Somewhat Agree)</label>
+
+                    <label class="radio-inline" for="threeA"> <input type="radio" id="threeA" name="anger" value="3"
+                                                                     required> 3 (Neutral)</label>
+
+                    <label class="radio-inline" for="fourA"> <input type="radio" id="fourA" name="anger" value="4"
+                                                                    required> 4 (Somewhat Disagree)</label>
+
+                    <label class="radio-inline" for="fiveA"> <input type="radio" id="fiveA" name="anger" value="5"
+                                                                    required> 5 (Strongly Disagree)</label>
                     <br>
                 </td>
             </tr>
             <!-- get video name -->
-            <div hidden > <input type="text" id="token" name="token" value={{ video }}> </div>
+            <div hidden><input type="text" id="token" name="token" value={{ video }}></div>
             <tr style="background-color:#faf8cb">
                 <td> This video depicts the emotion Disgust</td>
                 <td>
-                    <label class="radio-inline" for="oneD"><input type="radio" id="oneD" name="disgust" value="1" required> 1 (Strongly Agree)</label>
-                    
-                    <label class="radio-inline" for="twoD"> <input type="radio" id="twoD" name="disgust" value="2" required> 2 (Somewhat Agree)</label>
-                    
-                    <label class="radio-inline" for="threeD"> <input type="radio" id="threeD" name="disgust" value="3" required> 3 (Neutral)</label>
-                    
-                    <label class="radio-inline" for="fourD"><input type="radio" id="fourD" name="disgust" value="4" required> 4 (Somewhat Disagree)</label>
-                    
-                    <label class="radio-inline" for="fiveD"><input type="radio" id="fiveD" name="disgust" value="5" required> 5 (Strongly Disagree)</label>
+                    <label class="radio-inline" for="oneD"><input type="radio" id="oneD" name="disgust" value="1"
+                                                                  required> 1 (Strongly Agree)</label>
+
+                    <label class="radio-inline" for="twoD"> <input type="radio" id="twoD" name="disgust" value="2"
+                                                                   required> 2 (Somewhat Agree)</label>
+
+                    <label class="radio-inline" for="threeD"> <input type="radio" id="threeD" name="disgust" value="3"
+                                                                     required> 3 (Neutral)</label>
+
+                    <label class="radio-inline" for="fourD"><input type="radio" id="fourD" name="disgust" value="4"
+                                                                   required> 4 (Somewhat Disagree)</label>
+
+                    <label class="radio-inline" for="fiveD"><input type="radio" id="fiveD" name="disgust" value="5"
+                                                                   required> 5 (Strongly Disagree)</label>
                     <br>
                 </td>
             </tr>
             <tr style="background-color:#B5EAD7">
                 <td> This video depicts the emotion Annoyed</td>
                 <td>
-                    <label class="radio-inline" for="oneN"><input type="radio" id="oneN" name="annoyed" value="1" required> 1 (Strongly Agree)</label>
-                    
-                    <label class="radio-inline" for="twoN"> <input type="radio" id="twoN" name="annoyed" value="2" required> 2 (Somewhat Agree)</label>
-                    
-                    <label class="radio-inline" for="threeN">  <input type="radio" id="threeN" name="annoyed" value="3" required> 3 (Neutral)</label>
-                    
-                    <label class="radio-inline" for="fourN"> <input type="radio" id="fourN" name="annoyed" value="4" required> 4 (Somewhat Disagree)</label>
-                    
-                    <label class="radio-inline" for="fiveN"> <input type="radio" id="fiveN" name="annoyed" value="5" required> 5 (Strongly Disagree)</label>
+                    <label class="radio-inline" for="oneN"><input type="radio" id="oneN" name="annoyed" value="1"
+                                                                  required> 1 (Strongly Agree)</label>
+
+                    <label class="radio-inline" for="twoN"> <input type="radio" id="twoN" name="annoyed" value="2"
+                                                                   required> 2 (Somewhat Agree)</label>
+
+                    <label class="radio-inline" for="threeN"> <input type="radio" id="threeN" name="annoyed" value="3"
+                                                                     required> 3 (Neutral)</label>
+
+                    <label class="radio-inline" for="fourN"> <input type="radio" id="fourN" name="annoyed" value="4"
+                                                                    required> 4 (Somewhat Disagree)</label>
+
+                    <label class="radio-inline" for="fiveN"> <input type="radio" id="fiveN" name="annoyed" value="5"
+                                                                    required> 5 (Strongly Disagree)</label>
                     <br><br>
 
                 </td>
@@ -153,64 +277,90 @@
                     <label for="social tags">Select Social Signals:</label><br>
                 </td>
                 <td>
-                    
-                    <label for="socialsignal1"> <input type="checkbox" id="socialsignal1" name='socialsignal' value='wrinkled nose' >  Wrinkled Nose / بینی چین خورده</label>
-                    
-                    <label for="socialsignal2"> <input type="checkbox" id="socialsignal2" name='socialsignal'
-                           value='Smirk (Corner lip raised)'>  Smirk / پوزخند</label>
-                    
-                    <label for="socialsignal3"> <input type="checkbox" id="socialsignal3" name='socialsignal' value='Side eye'>  Side Eye / نگاه چپ</label>
-                    
-                    <label for="socialsignal4">  <input type="checkbox" id="socialsignal4" name='socialsignal' value='Calm'>  Calm / خونسرد</label> <br>
-                    
-                    <label for="socialsignal5">  <input type="checkbox" id="socialsignal5" name='socialsignal' value='Smiling'>  Smiling / لبخند</label>
-                    
-                    <label for="socialsignal6">  <input type="checkbox" id="socialsignal6" name='socialsignal' value='Eyebrows raised'>  Eyebrows Raised / ابروی بالابرده</label> <br>
-                    
-                    <label for="socialsignal7"> <input type="checkbox" id="socialsignal7" name='socialsignal' value='Lips pushed together'>  Lips Pushed Together/ لبهای به هم فشرده</label>
-                    <label for="socialsignal8"> <input type="checkbox" id="socialsignal8" name='socialsignal' value='Downturned Lips'> Downturned Lips / لبهای به سمت پایین جمع شده</label>
+                    <label for="socialsignal1"> <input type="checkbox" id="socialsignal1" name='socialsignal'
+                                                       value='wrinkled nose'> Wrinkled Nose / بینی چین خورده / Ilong na may kunot</label>
 
-                    <label for="socialsignal9"> <input type="checkbox" id="socialsignal9" name='socialsignal' value='Eyebrows pushed together'>  Eyebrows Pushed Together / ابروهای گره خورده</label>
+                    <label for="socialsignal2"> <input type="checkbox" id="socialsignal2" name='socialsignal'
+                                                       value='Smirk (Corner lip raised)'> Smirk / پوزخند / Ngisi</label>
+
+                    <label for="socialsignal3"> <input type="checkbox" id="socialsignal3" name='socialsignal'
+                                                       value='Side eye'> Side Eye / از گوشه چشم نگاه کردن / Mata sa gilid</label>
+
+                    <label for="socialsignal4"> <input type="checkbox" id="socialsignal4" name='socialsignal'
+                                                       value='Calm'> Calm / خونسرد / Mahinahon </label> <br>
+
+                    <label for="socialsignal5"> <input type="checkbox" id="socialsignal5" name='socialsignal'
+                                                       value='Smiling'> Smiling / لبخند / Ngumingiti</label>
+
+                    <label for="socialsignal6"> <input type="checkbox" id="socialsignal6" name='socialsignal'
+                                                       value='Eyebrows raised'> Eyebrows Raised / ابروی بالابرده / Nakataas ang kilay</label>
                     <br>
-                    <label for="socialsignal10"> <input type="checkbox" id="socialsignal10" name='socialsignal' value='Snarl'> Snarl / دندان به هم ساییدن</label>
-                    
-                    <label for="socialsignal11"> <input type="checkbox" id="socialsignal11" name='socialsignal' value='Shaking Head'> Shaking Head / تکان دادن سر</label>
-                   
-                    <label for="socialsignal12">  <input type="checkbox" id="socialsignal12" name='socialsignal' value='Arms Crossed'> Arms Crossed / دست به سینه</label>
+
+                    <label for="socialsignal7"> <input type="checkbox" id="socialsignal7" name='socialsignal'
+                                                       value='Lips pressed together'> Lips pressed Together/ لبهای به هم
+                        فشرده / Nakasara nang mariin ang mga labi</label>
+                    <label for="socialsignal8"> <input type="checkbox" id="socialsignal8" name='socialsignal'
+                                                       value='Downturned Lips'> Downturned Lips / لبهای به سمت پایین جمع
+                        شده / Pabagsak na mga labi</label>
+
+                    <label for="socialsignal9"> <input type="checkbox" id="socialsignal9" name='socialsignal'
+                                                       value='Eyebrows pushed together'> Eyebrows Pushed Together /
+                        ابروهای گره خورده  / Magkasalubong ang kilay</label>
                     <br>
-                    <label for="socialsignal13"> <input type="checkbox" id="socialsignal13" name='socialsignal' value='Head Turned Away'> Head Turned Away / سر برگرداندن</label>
-                    
-                    <label for="socialsignal14"> <input type="checkbox" id="socialsignal14" name='socialsignal' value='Squinting'> Squinting / تنگ کردن چشمها</label>
-                    
-                    <label for="socialsignal18"> <input type="checkbox" id="socialsignal18" name='socialsignal' value='Pressing Lips'> Pressing Lips / به هم فشردن لبها</label>
-                    
-                    <label for="socialsignal16"> <input type="checkbox" id="socialsignal16" name='socialsignal' value='Curling upper lip'> Curling Upper Lip / کج کردن لب بالایی</label>
-                    <label for="socialsignal17"> <input type="checkbox" id="socialsignal17" name='socialsignal' value='Closing Eyes'> Closing Eyes / بستن چشمها</label>
-                    
-                    <label for="socialsignal15"> <input type="checkbox" id="socialsignal15" name='socialsignal' value='Mocking'> Mocking / ادا درآوردن</label>
+                    <label for="socialsignal10"> <input type="checkbox" id="socialsignal10" name='socialsignal'
+                                                        value='Snarl'> Snarl / دندان به هم فشردن / Nakaangil</label>
+
+                    <label for="socialsignal11"> <input type="checkbox" id="socialsignal11" name='socialsignal'
+                                                        value='Shaking Head'> Shaking Head / تکان دادن سر / Napapailing ang ulo</label>
+
+                    <label for="socialsignal12"> <input type="checkbox" id="socialsignal12" name='socialsignal'
+                                                        value='Arms Crossed'> Arms Crossed / دست به سینه / Naka krus ang braso</label>
+                    <br>
+                    <label for="socialsignal13"> <input type="checkbox" id="socialsignal13" name='socialsignal'
+                                                        value='Head Turned Away'> Head Turned Away / سر
+                        برگرداندن / Nakabiling ang ulo</label>
+
+                    <label for="socialsignal14"> <input type="checkbox" id="socialsignal14" name='socialsignal'
+                                                        value='Squinting'> Squinting / تنگ کردن چشمها / Nanliliit ang mga mata</label>
+
+                    <label for="socialsignal18"> <input type="checkbox" id="socialsignal18" name='socialsignal'
+                                                        value='Pressing Lips'> Pressing Lips / به هم فشردن لبها / Madiin ang sara ng labi </label>
+
+                    <label for="socialsignal16"> <input type="checkbox" id="socialsignal16" name='socialsignal'
+                                                        value='Curling upper lip'> Curling Upper Lip / کج کردن لب بالایی / Nakatikwas ang nguso</label>
+                    <label for="socialsignal17"> <input type="checkbox" id="socialsignal17" name='socialsignal'
+                                                        value='Closing Eyes'> Closing Eyes / بستن چشمها / Nagsasara ang mata</label>
+
+                    <label for="socialsignal15"> <input type="checkbox" id="socialsignal15" name='socialsignal'
+                                                        value='Mocking'> Mocking / ادا درآوردن  / Nanunuya</label>
 
 
                     <br><br>
 
                     <label for="extra">What else do you see (Optional):</label><br>
 
-                    
+
                     <input type="text" id="extra" name="extra"><br><br>
                 </td>
             </tr>
-            <tr <tr style="background-color:#c7ceea">>
+
+            <tr style="background-color:#c7ceea">
                 <td>How confident are you about your selections?</td>
                 <td>
-                    
-                    <label for="one"><input type="radio" id="one" name="confidence" value="1" required> 1 (Not Very Confident)</label>
-                   
-                    <label for="two"> <input type="radio" id="two" name="confidence" value="2" required> 2 (Somewhat Not Confident) </label>
-                    
+
+                    <label for="one"><input type="radio" id="one" name="confidence" value="1" required> 1 (Not Very
+                        Confident)</label>
+
+                    <label for="two"> <input type="radio" id="two" name="confidence" value="2" required> 2 (Somewhat Not
+                        Confident) </label>
+
                     <label for="three"><input type="radio" id="three" name="confidence" value="3" required> 3 (Neutral)</label>
-                    
-                    <label for="four"><input type="radio" id="four" name="confidence" value="4" required> 4 (Somewhat Confident)</label>
-                    
-                    <label for="five"><input type="radio" id="five" name="confidence" value="5" required> 5 (Very Confident)</label>
+
+                    <label for="four"><input type="radio" id="four" name="confidence" value="4" required> 4 (Somewhat
+                        Confident)</label>
+
+                    <label for="five"><input type="radio" id="five" name="confidence" value="5" required> 5 (Very
+                        Confident)</label>
                     <br>
                     <div class="row">
                         <input type="submit" value="Submit" class="btn btn-info"/>
