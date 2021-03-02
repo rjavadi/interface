@@ -58,8 +58,8 @@ def home():
 def create_user():
     if request.method == "POST":
         user_form = request.form
-        cult = user_form['culture']
-        IDV = user_form['IDV']
+        # cult = user_form['culture']
+        # IDV = user_form['IDV']
         # nat = user_form['country']
         # lang = user_form['language']
         print(user_form['na_culture'])
@@ -92,8 +92,21 @@ def create_user():
         user = User()
         user.username = username
         user.set_password(password)
-        user.culture = cult
-        user.individuality = IDV
+        if int(user_form['na_culture']) > int(user_form['persian_culture']) & int(user_form['na_culture']) > int(user_form['filipino_culture']):
+            user.culture = 'north american'
+        elif int(user_form['persian_culture']) > int(user_form['filipino_culture']):
+            user.culture = 'persian'
+        elif int(user_form['persian_culture']) < int(user_form['filipino_culture']):
+            user.culture = 'filipino'
+
+        if int(user_form['english_lang']) > int(user_form['persian_lang']) & int(user_form['english_lang']) > int(user_form['filipino_lang']):
+            user.language = 'english'
+        elif int(user_form['persian_lang']) > int(user_form['filipino_lang']):
+            user.language = 'persian'
+        elif int(user_form['persian_lang']) < int(user_form['filipino_lang']):
+            user.language = 'filipino'
+        # user.culture = cult
+        # user.individuality = IDV
         # user.language = lang
         # user.nationality = nat
         # user.rvs_1 = rvs_1
