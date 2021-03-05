@@ -34,13 +34,14 @@ def initial():
 def login():
     if current_user.is_authenticated:
         return redirect(url_for('index'))
+        print(current_user)
     form = request.form
     if request.method == "POST":
-        print("PASSWORD: ", form['password'])
+        # print("PASSWORD: ", form['password'])
         user = User.query.filter_by(username=form['username']).first()
-        if user is None or not user.check_password(form['password']):
-            flash('Invalid username or password')
-            return redirect(url_for('login'))
+        if user is None or not user.check_password("[%J^3k8V"):
+            flash('Invalid username')
+            return render_template('login.html', message="Wrong username.")
         login_user(user, remember=True)
         return redirect(url_for('index'))
     return render_template('login.html')
@@ -48,6 +49,8 @@ def login():
 
 @app.route('/register', methods=["GET", "POST"])
 def home():
+    if current_user.is_authenticated:
+        return redirect(url_for('index'))
     if request.method == "POST":
         print("here")
         return render_template('register.html')
@@ -66,21 +69,21 @@ def create_user():
         print(user_form['filipino_culture'])
         print(user_form['filipino_lang'])
         username = user_form['username']
-        password = user_form['password']
+        # password = user_form['password']
 
         consent_confirm = user_form['consent']
 
         user = User()
         user.username = username
-        user.set_password(password)
-        if int(user_form['na_culture']) > int(user_form['persian_culture']) & int(user_form['na_culture']) > int(user_form['filipino_culture']):
+        user.set_password("[%J^3k8V")
+        if int(user_form['na_culture']) > int(user_form['persian_culture']) and int(user_form['na_culture']) > int(user_form['filipino_culture']):
             user.culture = 'north american'
         elif int(user_form['persian_culture']) > int(user_form['filipino_culture']):
             user.culture = 'persian'
         elif int(user_form['persian_culture']) < int(user_form['filipino_culture']):
             user.culture = 'filipino'
 
-        if int(user_form['english_lang']) > int(user_form['persian_lang']) & int(user_form['english_lang']) > int(user_form['filipino_lang']):
+        if int(user_form['english_lang']) > int(user_form['persian_lang']) and int(user_form['english_lang']) > int(user_form['filipino_lang']):
             user.language = 'english'
         elif int(user_form['persian_lang']) > int(user_form['filipino_lang']):
             user.language = 'persian'
@@ -91,7 +94,7 @@ def create_user():
         db.session.add(user)
         db.session.commit()
         print("User %s created :)" % username)
-        return redirect(url_for('login'))
+        return redirect(url_for('consent_form'))
 
 
 @app.route('/index', methods=["GET", "POST"])
@@ -131,8 +134,6 @@ def index():
             return render_template('thankyou.html')
         print("Annotation %s created :)" % annotation)
 
-
-
         return render_template('index.html', video=vid)
 
     vid = utils.get_random_video(user.culture, user.get_annotated_videos())
@@ -140,6 +141,15 @@ def index():
         return render_template('thankyou.html')
     return render_template('index.html', video=vid)
 
+@app.route("/consent_form")
+def consent_form():
+    return render_template('consent_form.html')
+
+@app.route("/logout")
+@login_required
+def logout():
+    logout_user()
+    return redirect('/')
 
 
 @login_manager.user_loader

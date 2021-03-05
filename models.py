@@ -8,7 +8,6 @@ class User(UserMixin, db.Model):
     annotated_videos = db.Column(db.String)
     password = db.Column(db.String)
     culture = db.Column(db.String)
-    nationality = db.Column(db.String)
     language = db.Column(db.String)
     individuality = db.Column(db.Integer)
 

@@ -19,9 +19,12 @@
 {#    </div>#}
 
     <form action="{{ url_for('create_user') }}" method="POST">
-        <p><b>Please define a simple username and password. This is only to keep the track of your annotation in case
+        <p><b>Please define a simple username. This is only to keep the track of your annotation in case
             you leave the website and will not affect your anonimity. After submitting this form, you'll be redirected
-            to login page to login.
+            to login page to login.<br>
+            If you cannot think of an anonymous username, you may concatenate your favorite movie/sport team,
+            favorite city and street number of your location like this:
+            gladiator_milan_1205 or realmadrid_london_3241. <br>
         </b></p>
         <div class="form-group">
             <label for="username">Username</label>
@@ -29,15 +32,15 @@
                    id="username" required>
             <div class="invalid-feedback">Oops, you missed this one.</div>
         </div>
-        <div class="form-group">
+        <!--<div class="form-group">
             <label>Password</label>
             <input type="password" class="form-control" id="password" name="password"
                    required="" autocomplete="new-password" required>
             <div class="invalid-feedback">Enter your password too!</div>
-        </div>
+        </div>-->
 
         <label for="consent"> <input type="checkbox" id="consent" name="consent" value="yes" required>
-            I have read the <a href="../static/consent_form.html" target="_blank"> consent form </a> and accept it.
+            I have read the <a href="{{ url_for('consent_form') }}" target="_blank"> consent form </a> and accept it.
         </label>
 
         <p><em></em></p>
@@ -77,7 +80,26 @@
                        required>
             </div>
         </div>
-
+        <br>
+        Please indicate how familiar you are with each of these languages:
+        <div class="row justify-content-center">
+            <div class="form-group col-md-3">
+                <label for="eng_lang">English: </label>
+                <input type="range" value="0" class="form-control-range" id="eng_lang" name="english_lang" min="0" max="5"
+                       required>
+            </div>
+            <div class="form-group col-md-3">
+                <label for="pr">Persian: </label>
+                <input type="range" value="0" class="form-control-range" id="pr" name="persian_lang" min="0" max="5"
+                       required>
+            </div>
+            <div class="form-group col-md-3">
+                <label for="filipino_lang">Filipino: </label>
+                <input type="range" value="0" class="form-control-range" id="filipino_lang" name="filipino_lang" min="0" max="5"
+                       required>
+            </div>
+        </div>
+        <br>
         <div class="row justify-content-center">
             <div class="alert alert-info col-lg-8" role="alert">
                 <h2 class="alert-heading">Individualism vs Collectivism</h2>
@@ -96,7 +118,7 @@
         </div>
 
         <div class="form-group">
-            According to the above description, how much do you identify as being individualistic? <br>
+            According to the above description, how much you identify yourself with being individualistic? <br>
             <div class="form-check form-check-inline">
                 <input class="form-check-input" type="radio" name="IDV" id="oneIDV" value="1" required>
                 <label class="form-check-label" for="oneIDV" required>1 (Individualistic) </label>
@@ -119,121 +141,10 @@
             </div>
         </div>
 
-        <!--<div class="form-group">
-            Rokeach Value Survey <br>
-            <div class="form-group">
-                <label for="rvs_1">A comfortable Life (i.e., a prosperous life)</label>
-                <input type="text" class="form-control" name="rvs_1"
-                       id="rvs_1" required>
-            </div>
-            <div class="form-group">
-                <label for="rvs_2">An exciting life (i.e., a stimulating, active life)</label>
-                <input type="text" class="form-control" name="rvs_2"
-                       id="rvs_2" required>
-            </div>
-            <div class="form-group">
-                <label for="rvs_3">A sense of accomplishment (i.e., a lasting contribution)</label>
-                <input type="text" class="form-control" name="rvs_3"
-                       id="rvs_3" required>
-            </div>
-            <div class="form-group">
-                <label for="rvs_4">A sense of accomplishment (i.e., a lasting contribution)</label>
-                <input type="text" class="form-control" name="rvs_4"
-                       id="rvs_4" required>
-            </div>
-            <div class="form-group">
-                <label for="rvs_5">A sense of accomplishment (i.e., a lasting contribution)</label>
-                <input type="text" class="form-control" name="rvs_5"
-                       id="rvs_5" required>
-            </div>
-            <div class="form-group">
-                <label for="rvs_6">A sense of accomplishment (i.e., a lasting contribution)</label>
-                <input type="text" class="form-control" name="rvs_6"
-                       id="rvs_6" required>
-            </div>
-            <div class="form-group">
-                <label for="rvs_7">A sense of accomplishment (i.e., a lasting contribution)</label>
-                <input type="text" class="form-control" name="rvs_7"
-                       id="rvs_7" required>
-            </div>
-            <div class="form-group">
-                <label for="rvs_8">A sense of accomplishment (i.e., a lasting contribution)</label>
-                <input type="text" class="form-control" name="rvs_8"
-                       id="rvs_8" required>
-            </div>
-            <div class="form-group">
-                <label for="rvs_9">A sense of accomplishment (i.e., a lasting contribution)</label>
-                <input type="text" class="form-control" name="rvs_9"
-                       id="rvs_9" required>
-            </div>
-            <div class="form-group">
-                <label for="rvs_10">A sense of accomplishment (i.e., a lasting contribution)</label>
-                <input type="text" class="form-control" name="rvs_10"
-                       id="rvs_10" required>
-            </div>
-            <div class="form-group">
-                <label for="rvs_11">A sense of accomplishment (i.e., a lasting contribution)</label>
-                <input type="text" class="form-control" name="rvs_11"
-                       id="rvs_11" required>
-            </div>
-            <div class="form-group">
-                <label for="rvs_12">A sense of accomplishment (i.e., a lasting contribution)</label>
-                <input type="text" class="form-control" name="rvs_12"
-                       id="rvs_12" required>
-            </div>
-            <div class="form-group">
-                <label for="rvs_13">A sense of accomplishment (i.e., a lasting contribution)</label>
-                <input type="text" class="form-control" name="rvs_13"
-                       id="rvs_13" required>
-            </div>
-            <div class="form-group">
-                <label for="rvs_14">A sense of accomplishment (i.e., a lasting contribution)</label>
-                <input type="text" class="form-control" name="rvs_14"
-                       id="rvs_14" required>
-            </div>
-            <div class="form-group">
-                <label for="rvs_15">A sense of accomplishment (i.e., a lasting contribution)</label>
-                <input type="text" class="form-control" name="rvs_15"
-                       id="rvs_15" required>
-            </div>
-            <div class="form-group">
-                <label for="rvs_16">A sense of accomplishment (i.e., a lasting contribution)</label>
-                <input type="text" class="form-control" name="rvs_16"
-                       id="rvs_16" required>
-            </div>
-            <div class="form-group">
-                <label for="rvs_17">A sense of accomplishment (i.e., a lasting contribution)</label>
-                <input type="text" class="form-control" name="rvs_17"
-                       id="rvs_17" required>
-            </div>
-            <div class="form-group">
-                <label for="rvs_18">A sense of accomplishment (i.e., a lasting contribution)</label>
-                <input type="text" class="form-control" name="rvs_18"
-                       id="rvs_18" required>
-            </div>
-
-        </div> -->
 
 
         <!--<p>Language (if you speak more than one, give the language you identify with the most): </p>-->
-        Please indicate how familiar you are with each of these languages:
-        <div class="row justify-content-center">
-            <div class="form-group col-md-3">
-                <label for="eng_lang">English: </label>
-                <input type="range" value="0" class="form-control-range" id="eng_lang" name="english_lang" min="0" max="5"
-                       required>
-            </div>
-            <div class="form-group col-md-3">
-                <label for="pr">Persian: </label>
-                <input type="range" value="0" class="form-control-range" id="pr" name="persian_lang" min="0" max="5"
-                       required>
-            </div>
-            <div class="form-group col-md-3">
-                <label for="filipino_lang">Filipino: </label>
-                <input type="range" value="0" class="form-control-range" id="filipino_lang" name="filipino_lang" min="0" max="5"
-                       required>
-            </div>
-        </div>
+
         <br>
         <div class="row justify-content-center">
             <input type="submit" value="Register Me!" class="btn btn-info"/>

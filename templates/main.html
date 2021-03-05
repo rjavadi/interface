@@ -12,67 +12,49 @@
     <div class="bd-example" align="middle">
         <img src="{{ url_for('static', filename='rosielab.png') }}" align="middle"/>
     </div>
-    <h2>
-        Social Signals in the Wild
-    </h2>
-    <h3>Definitions:</h3>
-    <p>
-        Please read the following definitions for each emotion carefully.
-        *Definitions are taken from Paul Ekmans’ definitions of emotions and can be found at
-        <a href="https://www.paulekman.com/">here</a>.
-    </p>
+    <br>
+    <div class="row justify-content-center">
+        <h1>
+            Social Signals in the Wild
+        </h1>
+        <h3>
+            Welcome to the Social Signal study website and thank you for your participation in this research project.
+        </h3>
 
-    <div class="row">
-        <div class="col">
-            <h4>Contempt</h4>
-            <h4>تحقیر</h4>
-            <ul>
-                <li>Contempt can be described as a feeling of “I am better than you”. It is generally a feeling of
-                    superiority but can be felt when someone looks down on those with a higher social status. For
-                    example, feeling contemptuous for your boss.
-                </li>
-            </ul>
-            <ul>
-                تحقیر نوعی احساس خود برتربینی است. عموما به صورت احساس برتری ظاهر می شود اما می تواند زمانی نیز احساس
-                شود که
-                کسی با تمسخر با کسی برخورد می کند. به طور مثال، احساس تحقیر از سمت رییستان. یا یک لبخند کنایه آمیز از
-                دوستتان.
-            </ul>
-        </div>
-        <div class="col">
-            <h4>Anger</h4>
-            <h4>عصبانیت</h4>
-            <ul>
-                <li>Anger can be described as annoyance, frustration, argumentative, bitterness, vengefulness, or fury.
-                    Anger can be towards someone or towards yourself.
-                </li>
-                <li>عصبانیت نوعی ناخشنودی، ناکامی، جدال، تلخی، انتقام یا خشم است.</li>
-            </ul>
-        </div>
-        <div class="col">
-            <h4>Disgust</h4>
-            <h4>انزجار</h4>
-            <ul>
-                <li>Disgust can be described as dislike, aversion, distaste, repugnance, revulsion, abhorrence, or
-                    loathing. Disgust is normally brought upon by something that is offensive, poisonous or
-                    contaminated.
-                </li>
-                <li>انزجار را میتوان به صورت بیزاری، عدم علاقه، تنفر، اشمئزاز، یا بی میلی توصیف کرد.
-                </li>
-            </ul>
-        </div>
+
     </div>
-    <!--<div class="row">-->
-    <h2>Task:</h2>
-    <p>For each short clip, answer the associated questions related to the emotion definitions above.</p>
-    <p>More information can be found <a href="../static/consent_form.html" target="_blank"> here </a>.</p>
-    <h6 class="bg-warning">If you have already registered, please login from <a
-            href={{ url_for('login') }} target="_blank"> here </a></h6>
+    <br>
+    <br>
+    <p>
+        <b>Please follow the instructions to register and start the task! </b> <br><br>
+            <h4> What is this research about?</h4>
+            <br>
+            Through the result of this task, we can classify negative emotions of Contempt, Anger and Disgust
+        (CAD) in three different cultures of North American, Persian and Filipino. We also want to find the common
+            facial expressions within each emotion. With your aid, robots and intelligent agents in future will be able
+            to identify whether people are statisfied with their interaction or not.
+
+        </p><br>
+        <h5>    </h5>
+
+<div class="row justify-content-center">
+    <p class="bg-warning">   If you have already registered, please login from <a
+            href={{ url_for('login') }}> here </a></p>
+    <br>
+</div>
+
+
+    <h2>What is the task?</h2>
+    <br>
+    <p>For each short clip, answer the associated questions related to the emotion definitions provided.</p>
+    <p>More information can be found <a href="{{ url_for('consent_form') }}" target="_blank"> here</a>.</p>
+
     <div class="row justify-content-center">
         <form action="{{ url_for('home') }}" method="POST">
             <input type="submit" value="Continue" class="btn btn-info"/>
         </form>
     </div>
+
     <br>
     <br>
     <!--</div>-->
