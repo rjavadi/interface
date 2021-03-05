@@ -78,6 +78,8 @@
         be back to this page. </h4>
     <p>
         Please rate how much you agree or disagree with the following statements regarding the video displayed.
+        <br>
+        <b>Note that videos <u>do not have audio.</u></b>
     </p>
     <br>
 
@@ -232,7 +234,9 @@
             </tr>
             <!-- get video name -->
 
-            <div><span>In case you need to re-annotate the video, send video name to research personel</span><input type="text" class="form-inline" id="token" readonly name="token" value={{ video }}></div>
+            <div class="bg-warning"><span>In case you need to re-annotate the video, send video name in this box to research personel</span>
+                <input type="text" class="form-inline" id="token" readonly name="token" value={{ video }}>
+            </div>
             <tr style="background-color:#faf8cb">
                 <td> This video depicts the emotion Disgust</td>
                 <td>
@@ -274,7 +278,7 @@
 
                 </td>
             </tr>
-            <tr style="background-color:#a8ddf3">
+            <!--<tr style="background-color:#a8ddf3">
                 <td>
                     <label for="social tags">Select Social Signals:</label><br>
                 </td>
@@ -344,7 +348,7 @@
 
                     <input type="text" id="extra" name="extra"><br><br>
                 </td>
-            </tr>
+            </tr>-->
 
             <tr style="background-color:#c7ceea">
                 <td>How confident are you about your selections?</td>
@@ -364,15 +368,22 @@
                     <label for="five"><input type="radio" id="five" name="confidence" value="5" required> 5 (Very
                         Confident)</label>
                     <br>
-                    <div class="row">
-                        <input type="submit" value="Submit" class="btn btn-info"/>
-                    </div>
+
                 </td>
             </tr>
 
         </table>
+        <div class="row justify-content-center">
+                        <input type="submit" value="Submit" class="btn btn-info"/>
+                    </div>
 
     </form>
 </div>
+
+<footer class="footer">
+      <div class="container justify-content-center">
+        <p class="text-muted">Simon Fraser University - ROSIE Lab</p>
+      </div>
+    </footer>
 </body>
 </html>

@@ -9,14 +9,16 @@
 </head>
 <body>
 <div class="container">
-
+    <div class="bd-example" align="middle">
+        <img src="{{ url_for('static', filename='rosielab.png') }}" align="middle"/>
+    </div>
     <h2>
         Social Signals in the Wild
     </h2>
     <h3>Definitions:</h3>
     <p>
         Please read the following definitions for each emotion carefully.
-        *Definitions and images are taken from Paul Ekmans’ definitions of emotions and can be found at
+        *Definitions are taken from Paul Ekmans’ definitions of emotions and can be found at
         <a href="https://www.paulekman.com/">here</a>.
     </p>
 
@@ -31,8 +33,10 @@
                 </li>
             </ul>
             <ul>
-                تحقیر نوعی احساس خود برتربینی است. عموما به صورت احساس برتری ظاهر می شود اما می تواند زمانی احساس شود که
-                کسی با تمسخر با کسی برخورد می کند. به طور مثال، احساس تحقیر از سمت رییستان. یا یک لبخند کنایه آمیز از دوستتان.
+                تحقیر نوعی احساس خود برتربینی است. عموما به صورت احساس برتری ظاهر می شود اما می تواند زمانی نیز احساس
+                شود که
+                کسی با تمسخر با کسی برخورد می کند. به طور مثال، احساس تحقیر از سمت رییستان. یا یک لبخند کنایه آمیز از
+                دوستتان.
             </ul>
         </div>
         <div class="col">
@@ -53,22 +57,31 @@
                     loathing. Disgust is normally brought upon by something that is offensive, poisonous or
                     contaminated.
                 </li>
-                <li>انزجار را میتوان به صورت دوست نداشتن و بیزاری، عدم علاقه، تنفر، اشمئزاز، یا بی میلی توصیف کرد.
+                <li>انزجار را میتوان به صورت بیزاری، عدم علاقه، تنفر، اشمئزاز، یا بی میلی توصیف کرد.
                 </li>
             </ul>
         </div>
     </div>
     <!--<div class="row">-->
-        <h3>Task:</h3>
-        <p>For each short clip, answer the associated questions related to the emotion definitions above.</p>
-        <div class="bd-example" align="middle">
-            <img src="{{url_for('static', filename='rosielab.png')}}" align="middle"/>
-        </div>
-        <form action="{{ url_for('home')}}" method="POST">
+    <h2>Task:</h2>
+    <p>For each short clip, answer the associated questions related to the emotion definitions above.</p>
+    <p>More information can be found <a href="../static/consent_form.html" target="_blank"> here </a>.</p>
+    <h6 class="bg-warning">If you have already registered, please login from <a
+            href={{ url_for('login') }} target="_blank"> here </a></h6>
+    <div class="row justify-content-center">
+        <form action="{{ url_for('home') }}" method="POST">
             <input type="submit" value="Continue" class="btn btn-info"/>
         </form>
+    </div>
+    <br>
+    <br>
     <!--</div>-->
 </div>
+<footer class="footer">
+    <div class="container justify-content-center">
+        <p class="text-muted">Simon Fraser University - ROSIE Lab</p>
+    </div>
+</footer>
 </body>
 <!-- we can add diclaimer here?-->
 </html>

@@ -58,34 +58,15 @@ def home():
 def create_user():
     if request.method == "POST":
         user_form = request.form
-        # cult = user_form['culture']
+
         IDV = user_form['IDV']
-        # nat = user_form['country']
-        # lang = user_form['language']
+
         print(user_form['na_culture'])
         print(user_form['persian_culture'])
         print(user_form['filipino_culture'])
         print(user_form['filipino_lang'])
         username = user_form['username']
         password = user_form['password']
-        rvs_1 = user_form['rvs_1']
-        rvs_2 = user_form['rvs_1']
-        rvs_3 = user_form['rvs_3']
-        rvs_4 = user_form['rvs_4']
-        rvs_5 = user_form['rvs_5']
-        rvs_6 = user_form['rvs_6']
-        rvs_7 = user_form['rvs_7']
-        rvs_8 = user_form['rvs_8']
-        rvs_9 = user_form['rvs_9']
-        rvs_10 = user_form['rvs_10']
-        rvs_11 = user_form['rvs_11']
-        rvs_12 = user_form['rvs_12']
-        rvs_13 = user_form['rvs_13']
-        rvs_14 = user_form['rvs_14']
-        rvs_15 = user_form['rvs_15']
-        rvs_16 = user_form['rvs_16']
-        rvs_17 = user_form['rvs_17']
-        rvs_18 = user_form['rvs_18']
 
         consent_confirm = user_form['consent']
 
@@ -105,13 +86,8 @@ def create_user():
             user.language = 'persian'
         elif int(user_form['persian_lang']) < int(user_form['filipino_lang']):
             user.language = 'filipino'
-        # user.culture = cult
+
         user.individuality = IDV
-        # user.language = lang
-        # user.nationality = nat
-        # user.rvs_1 = rvs_1
-        # user.rvs_2 = rvs_2
-        # user.rvs_3 = rvs_3
         db.session.add(user)
         db.session.commit()
         print("User %s created :)" % username)
