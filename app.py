@@ -1,6 +1,5 @@
 from flask import Flask, render_template, request, \
     redirect, url_for, flash
-import pandas as pd
 import csv
 from collections import defaultdict
 import random
