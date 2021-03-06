@@ -106,12 +106,14 @@ def index():
         form = request.form
 
 
+
         annotation: Annotation = Annotation()
         annotation.emotion = form['emotion']
         annotation.anger_score = form['anger']
         annotation.contempt_score = form['contempt']
         annotation.disgust_score = form['disgust']
         annotation.annoyed_score = form['annoyed']
+        annotation.gender = form['gender']
         annotation.filename = form.get("token")
         user.add_video(form.get("token"))
 
@@ -124,22 +126,24 @@ def index():
         annotation.annotator_culture = user.culture
         annotation.annotator_language = user.language
         annotation.annotator_individuality = user.individuality
-        annotation.annotator_nationality = user.nationality
         annotation.social_signals = social_signals
+
 
         db.session.add(annotation)
         db.session.commit()
         vid = utils.get_random_video(user.culture, user.get_annotated_videos())
+        completed = utils.get_completed_videos(user.culture, user.get_annotated_videos())
         if vid == "FINISHED":
             return render_template('thankyou.html')
         print("Annotation %s created :)" % annotation)
 
-        return render_template('index.html', video=vid)
+        return render_template('index.html', context={'video':vid, 'language': user.language, 'completed': completed})
 
     vid = utils.get_random_video(user.culture, user.get_annotated_videos())
+    completed = utils.get_completed_videos(user.culture, user.get_annotated_videos())
     if vid == "FINISHED":
         return render_template('thankyou.html')
-    return render_template('index.html', video=vid)
+    return render_template('index.html', context={'video':vid, 'language': user.language, 'completed': completed})
 
 @app.route("/consent_form")
 def consent_form():

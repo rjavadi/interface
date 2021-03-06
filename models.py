@@ -48,6 +48,7 @@ class Annotation(db.Model):
     filename = db.Column(db.String, nullable=False)
     video_culture = db.Column(db.String)
     emotion = db.Column(db.String)
+    gender = db.Column(db.String)
     confidence = db.Column(db.Integer)
     anger_score = db.Column(db.Integer)
     contempt_score = db.Column(db.Integer)
@@ -55,7 +56,6 @@ class Annotation(db.Model):
     annoyed_score = db.Column(db.Integer)
     social_signals = db.Column(db.String, default='')
     annotator_culture = db.Column(db.String)
-    annotator_nationality = db.Column(db.String)
     annotator_language = db.Column(db.String)
     annotator_individuality = db.Column(db.Integer)
 

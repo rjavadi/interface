@@ -15,62 +15,98 @@
     <h3>Definitions:</h3>
     <div class="row">
         <div class="col">
-            <h4>Contempt</h4>
-            <h4>تحقیر</h4>
+            {% if context['language'] == 'english' %}
+                <h4>Contempt</h4>
+            {% endif %}
+            {% if context['language'] == 'persian' %}
+                <h4 class="text-right" dir="rtl">تحقیر</h4>
+            {% endif %}
+        {% if context['language'] == 'filipino' %}
             <h4>Paghamak</h4>
+        {% endif %}
             <ul>
                 <li><i class="flag flag-canada"></i>Contempt can be described as a feeling of “I am better than you”. It
                     is generally a feeling of
                     superiority but can be felt when someone looks down on those with a higher social status. For
                     example, feeling contemptuous for your boss.
                 </li>
-                <li>
-                    <i class="flag flag-iran"></i>تحقیر نوعی احساس خود برتربینی است. عموما به صورت احساس برتری ظاهر می
-                    شود اما می تواند زمانی احساس
-                    شود که
-                    کسی با تمسخر با کسی برخورد می کند. به طور مثال، احساس تحقیر از سمت رییستان. یا یک لبخند کنایه آمیز
-                    از
-                    دوستتان.
-                </li>
+                {% if context['language'] == 'persian' %}
+                    <li class="text-right" dir="rtl">
+                        تحقیر نوعی احساس خود برتربینی است. عموما به صورت احساس برتری ظاهر می
+                        شود اما می تواند زمانی احساس
+                        شود که
+                        کسی با تمسخر با کسی برخورد می کند. به طور مثال، احساس تحقیر از سمت رییستان. یا یک لبخند کنایه
+                        آمیز
+                        از
+                        دوستتان.
+                    </li>
+                {% endif %}
+            {% if context['language'] == 'filipino' %}
                 <li>
                     Paghamak ay maaaring ilarawan ng pakiramdam na "mas maigi ako sa iyo". Ito ay karaniwang
                     ginagamit sa pakiramdam ng pagmamalaki ngunit maaari rin sa pakiramdam ng paglait sa mga nasa mas
                     mataas
                     na antas ng lipunan. Halimbawa ay ang paghamak sa amo o boss.
                 </li>
+            {% endif %}
 
             </ul>
         </div>
         <div class="col">
-            <h4>Anger</h4>
-            <h4>عصبانیت</h4>
+            {% if context['language'] == 'english' %}
+                <h4>Anger</h4>
+            {% endif %}
+        {% if context['language'] == 'persian' %}
+            <h4 class="text-right" dir="rtl">عصبانیت</h4>
+        {% endif %}
+        {% if context['language'] == 'filipino' %}
             <h4>Galit</h4>
+        {% endif %}
             <ul>
-                <li>Anger can be described as annoyance, frustration, argumentative, bitterness, vengefulness, or fury.
-                    Anger can be towards someone or towards yourself.
-                </li>
-                <li>عصبانیت نوعی ناخشنودی، ناکامی، جدال، تلخی، انتقام یا خشم است.</li>
+                {% if context['language'] == 'english' %}
+                    <li>Anger can be described as annoyance, frustration, argumentative, bitterness, vengefulness, or
+                        fury.
+                        Anger can be towards someone or towards yourself.
+                    </li>
+                {% endif %}
+                {% if context['language'] == 'persian' %}
+                    <li class="text-right" dir="rtl">عصبانیت نوعی ناخشنودی، ناکامی، جدال، تلخی، انتقام یا خشم است.</li>
+                {% endif %}
+            {% if context['language'] == 'filipino' %}
                 <li>Galit ay maaaring ilarawan ng pagkainis, pagkabigo, pagtatalo, kapaitan, paghihiganti, o
                     pagngangalit. Galit ay maaaring nakaukol sa ibang tao o sa sarili.
                 </li>
+            {% endif %}
             </ul>
         </div>
         <div class="col">
-            <h4>Disgust</h4>
-            <h4>انزجار</h4>
+            {% if context['language'] == 'english' %}
+                <h4>Disgust</h4>
+            {% endif %}
+            {% if context['language'] == 'persian' %}
+                <h4 class="text-right" dir="rtl">انزجار</h4>
+            {% endif %}
+        {% if context['language'] == 'filipino' %}
             <h4>Pagkasuya</h4>
+        {% endif %}
             <ul>
-                <li>Disgust can be described as dislike, aversion, distaste, repugnance, revulsion, abhorrence, or
-                    loathing. Disgust is normally brought upon by something that is offensive, poisonous or
-                    contaminated.
-                </li>
-                <li>انزجار را میتوان به صورت دوست نداشتن و بیزاری، عدم علاقه، تنفر، اشمئزاز، یا بی میلی توصیف کرد.
-                </li>
-                <li>
-                    Pagkasuya ay maaaring ilarawan ng di pagkagusto, kaayawan, kawalan ng gana, pagkasuklam, pandidiri,
-                    pagkapoot o pagkamuhi. Pagkasuya ay karaniwang nagmumula sa bagay na nakakasakit, nakakalason o
-                    kontaminado.
-                </li>
+                {% if context['language'] == 'english' %}
+                    <li>Disgust can be described as dislike, aversion, distaste, repugnance, revulsion, abhorrence, or
+                        loathing. Disgust is normally brought upon by something that is offensive, poisonous or
+                        contaminated.
+                    </li>
+                {% endif %}
+                {% if context['language'] == 'persian' %}
+                    <li class="text-right" dir="rtl">انزجار را میتوان به صورت دوست نداشتن و بیزاری، عدم علاقه، تنفر،
+                        اشمئزاز، یا بی میلی توصیف کرد.
+                    </li>
+                {% endif %}
+                {% if context['language'] == 'filipino' %}
+                    <li> kaayawan, kawalan ng gana, pagkasuklam, pandidiri,
+                        pagkapoot o pagkamuhi. Pagkasuya ay karaniwang nagmumula sa bagay na nakakasakit, nakakalason o
+                        kontaminado.
+                    </li>
+                {% endif %}
             </ul>
         </div>
     </div>
@@ -82,7 +118,8 @@
         Please rate how much you agree or disagree with the following statements regarding the video displayed.
         <br>
         <b>Note that videos <u>do not have audio.</u></b> Your progress will be saved and you can come back later if you
-        close the browser's tab.
+        close the browser's tab. <br>
+
     </p>
     <br>
 
@@ -93,7 +130,7 @@
     <form method="POST" action="/index">
 
         <div class="col-xs-9">
-                    Please play the video and check the box of observed facial expressions in the clip: <br>
+            Please play the video and check the box of observed facial expressions in the clip: <br>
 
             <table class="table">
 
@@ -187,16 +224,18 @@
 
         <div class="row justify-content-center">
             <div class="col-xs-3">
+
                 <video width="640" height="480" controls>
                     <source src={{ url_for(
-                'static', filename= video) }} type
+                'static', filename= context['video'] ) }} type
                     = "video/mp4">
                     Your browser does not support the video tag.
 
                 </video>
             </div>
-        </div>
 
+        </div>
+        <p class="ustify-content-center">{{ context['completed'] }}</p>
         <table class="table table-striped">
             <tr style="background-color:#FF9AA2">
 
@@ -255,8 +294,8 @@
             </tr>
             <!-- get video name -->
 
-            <div class="bg-warning"><span>In case you need to re-annotate the video, send video name in this box to research personel</span>
-                <input type="text" class="form-inline" id="token" readonly name="token" value={{ video }}>
+            <div class="bg-warning"><span>In case you need to re-annotate the video, send video name in this box to one of research personnel.</span>
+                <input type="text" class="form-inline" id="token" readonly name="token" value={{ context['video'] }}>
             </div>
             <tr style="background-color:#faf8cb">
                 <td> This video depicts the emotion Disgust</td>
@@ -278,7 +317,7 @@
                     <br>
                 </td>
             </tr>
-            <tr style="background-color:#B5EAD7">
+            <tr style="background-color:#bfec98">
                 <td> This video depicts the emotion Annoyed</td>
                 <td>
                     <label class="radio-inline" for="oneN"><input type="radio" id="oneN" name="annoyed" value="1"
@@ -296,6 +335,19 @@
                     <label class="radio-inline" for="fiveN"> <input type="radio" id="fiveN" name="annoyed" value="5"
                                                                     required> 5 (Strongly Disagree)</label>
                     <br><br>
+
+                </td>
+            </tr>
+            <tr style="background-color:#b7fad5">
+
+                <td> Actor's gender:</td>
+                <td>
+
+                    <label class="radio-inline" for="male"> <input type="radio" id="male" name="gender" value="male"
+                                                                    required> Male </label>
+
+                    <label class="radio-inline" for="female"><input type="radio" id="female" name="gender"
+                                                                      value="female" required> Female </label>
 
                 </td>
             </tr>
