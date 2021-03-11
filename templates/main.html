@@ -50,7 +50,7 @@
     <p>More information can be found <a href="{{ url_for('consent_form') }}" target="_blank"> here</a>.</p>
 
     <div class="row justify-content-center">
-        <form action="{{ url_for('home') }}" method="POST">
+        <form action="{{ url_for('consent_form') }}" method="GET">
             <input type="submit" value="Continue" class="btn btn-info"/>
         </form>
     </div>

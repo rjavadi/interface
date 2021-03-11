@@ -1,13 +1,10 @@
 from flask import Flask, render_template, request, \
     redirect, url_for, flash
-import csv
-from collections import defaultdict
-import random
-from models import User, Annotation, DrawEmail
-from config import Config
-from extension import db
+from flask_login import LoginManager, login_required, current_user, login_user, logout_user
+
 import utils
-from flask_login import LoginManager, login_url, login_required, current_user, login_user, logout_user
+from extension import db
+from models import User, Annotation, DrawEmail
 
 ## Setting up app essentials
 app = Flask(__name__, static_folder='./static')
@@ -51,8 +48,8 @@ def home():
     if current_user.is_authenticated:
         return redirect(url_for('index'))
     if request.method == "POST":
-        print("here")
         return render_template('register.html')
+    print("Register!!!!")
     return render_template('register.html')
 
 
