@@ -49,7 +49,6 @@ def home():
         return redirect(url_for('index'))
     if request.method == "POST":
         return render_template('register.html')
-    print("Register!!!!")
     return render_template('register.html')
 
 
@@ -66,8 +65,6 @@ def create_user():
         print(user_form['filipino_lang'])
         username = user_form['username']
         # password = user_form['password']
-
-        consent_confirm = user_form['consent']
 
         user = User()
         user.username = username
@@ -90,13 +87,24 @@ def create_user():
         db.session.add(user)
         db.session.commit()
         print("User %s created :)" % username)
-        return redirect(url_for('consent_form'))
+        return redirect(url_for('index '))
 
 
 @app.route('/index', methods=["GET", "POST"])
 @login_required
 def index():
     user: User = current_user
+    facial_exprssions_translations = None
+    if user.language == 'english':
+        facial_exprssions_translations = utils.english_fe
+    elif user.language == 'persian':
+        facial_exprssions_translations = utils.persian_fe
+    elif user.language == 'filipino':
+        facial_exprssions_translations = utils.filipino_fe
+
+    print(user.language, '**********')
+    print(user.username, '  %%%%%%%%')
+
     if request.method == "POST":  # if the request is post (i.e. new video annotated?)
         # print(request.form)
         form = request.form
@@ -133,13 +141,15 @@ def index():
             return render_template('thankyou.html')
         print("Annotation %s created :)" % annotation)
 
-        return render_template('index.html', context={'video':vid, 'language': user.language, 'completed': completed})
+        return render_template('index.html', context={'video':vid, 'language': user.language, 'completed': completed,
+                                                      'expressions': facial_exprssions_translations})
 
     vid = utils.get_random_video(user.culture, user.get_annotated_videos())
     completed = utils.get_completed_videos(user.culture, user.get_annotated_videos())
     if vid == "FINISHED":
         return render_template('thankyou.html')
-    return render_template('index.html', context={'video':vid, 'language': user.language, 'completed': completed})
+    return render_template('index.html', context={'video':vid, 'language': user.language, 'completed': completed,
+                                                  'expressions': facial_exprssions_translations})
 
 @app.route("/consent_form")
 def consent_form():
