@@ -48,6 +48,3 @@ def get_completed_videos(culture, annotated_videos):
     completed = len(set(annotated_videos))
     return "{} out of {} clips completed.".format(completed, all)
 
-
-for i,e in enumerate(english_fe):
-    print(i, e)
