@@ -1,4 +1,6 @@
 import os, glob, random
+import string
+import secrets
 
 persian_fe = ['پوزخند', 'لبخند', 'خونسرد', 'دندان به هم فشردن', 'لبهای به هم فشرده',
               'جمع کردن لبها به سمت پایین', 'بالابردن لب بالایی','بالابردن گوشه لب',
@@ -13,8 +15,8 @@ english_fe = ['Smirk', 'Smiling', 'Calm', 'Snarl', 'Lips pressed togethers', 'Do
               'Side eye', 'Squinting', 'Closing eyes', 'Raised Eyebrow', 'Eyebrows pushed together', 'Wrinkled nose',
               'Shaking head', 'Head turned away', 'Arms crossed', 'Mocking']
 
+
 def get_random_video(culture, annotated_videos):
-    # TODO: add culture folder
     base_dir = ""
     if culture == "north american":
         base_dir = "na/"
@@ -23,8 +25,7 @@ def get_random_video(culture, annotated_videos):
     elif culture == "filipino":
         base_dir = "filipino/"
     files = [base_dir + os.path.basename(x) for x in glob.glob("./static/" + base_dir + "*.mp4")]
-    print("~~~~All video files: ", files)
-    print("####User's annotated videos: ", annotated_videos)
+
     files.sort()
     annotated_videos.sort()
     # check if user has annotated all files. If yes, return "FINISHED" keyword
@@ -48,3 +49,7 @@ def get_completed_videos(culture, annotated_videos):
     completed = len(set(annotated_videos))
     return "{} out of {} clips completed.".format(completed, all)
 
+
+def id_generator(size=12, chars=string.ascii_uppercase + string.digits):
+    # return ''.join(random.choice(chars) for _ in range(size))
+    return ''.join(secrets.choice(string.ascii_uppercase + string.digits) for _ in range(size))

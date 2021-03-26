@@ -62,7 +62,7 @@ class Annotation(db.Model):
     def __repr__(self):
         return '<Annotation {} {}>'.format(self.emotion, self.filename)
 
-
+#TODO: remove
 class DrawEmail(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String, nullable=False)

@@ -63,11 +63,12 @@ def create_user():
         print(user_form['persian_culture'])
         print(user_form['filipino_culture'])
         print(user_form['filipino_lang'])
-        username = user_form['username']
+        # username = user_form['username']
         # password = user_form['password']
 
         user = User()
-        user.username = username
+
+        user.username = utils.id_generator()
         user.set_password("[%J^3k8V")
         if int(user_form['na_culture']) > int(user_form['persian_culture']) and int(user_form['na_culture']) > int(user_form['filipino_culture']):
             user.culture = 'north american'
@@ -86,8 +87,11 @@ def create_user():
         user.individuality = IDV
         db.session.add(user)
         db.session.commit()
-        print("User %s created :)" % username)
-        return redirect(url_for('index '))
+        print("User %s created :)" % user.username)
+        return render_template('show_code.html', user_code=user.username)
+
+# @app.route('/code', methods=["GET"])
+
 
 
 @app.route('/index', methods=["GET", "POST"])
@@ -95,15 +99,13 @@ def create_user():
 def index():
     user: User = current_user
     facial_exprssions_translations = None
+    # setting translations for social signals
     if user.language == 'english':
         facial_exprssions_translations = utils.english_fe
     elif user.language == 'persian':
         facial_exprssions_translations = utils.persian_fe
     elif user.language == 'filipino':
         facial_exprssions_translations = utils.filipino_fe
-
-    print(user.language, '**********')
-    print(user.username, '  %%%%%%%%')
 
     if request.method == "POST":  # if the request is post (i.e. new video annotated?)
         # print(request.form)
@@ -169,20 +171,21 @@ def load_user(user_id):
         return User.query.get(user_id)
     return None
 
-@app.route('/enter_draw', methods=["GET", "POST"])
+@app.route('/gift_codes', methods=["GET", "POST"])
 @login_required
-def enter_draw():
+def gift_codes():
+    if request.method == "GET":
+        return render_template('thankyou.html')
     if request.method == "POST":  # if the request is post (i.e. new video annotated?)
         # print(request.form)
-        email = request.form['email']
-        draw = DrawEmail()
-        draw.email = email
-        db.session.add(draw)
-        db.session.commit()
-        # TODO: return this page with a message that shows the user has entered email successfully.
-        return render_template('thankyou.html', message="You have successfully submitted your email!")
+        err_msg = None
+        code = request.form['code']
+        if code is not None:
+            user = User.query.get(code)
+            if user is None:
+                err_msg = "Wrong code!"
+        return render_template('thankyou.html', message=err_msg)
 
 if __name__ == '__main__':
     app.debug = True
-    print("SECRET_KEY:    ", app.config['SECRET_KEY'])
     app.run(host='0.0.0.0', port=5000)
