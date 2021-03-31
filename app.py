@@ -4,7 +4,7 @@ from flask_login import LoginManager, login_required, current_user, login_user, 
 
 import utils
 from extension import db
-from models import User, Annotation, DrawEmail
+from models import User, Annotation, GiftCard
 
 ## Setting up app essentials
 app = Flask(__name__, static_folder='./static')
@@ -21,8 +21,8 @@ with app.app_context():
 @app.route('/', methods=["GET", "POST"])
 def initial():
     # TODO: remove these lines
-    if current_user.is_authenticated:
-        logout_user()
+    # if current_user.is_authenticated:
+    #     logout_user()
     return render_template('main.html')
 
 
@@ -58,16 +58,7 @@ def create_user():
         user_form = request.form
 
         IDV = user_form['IDV']
-
-        print(user_form['na_culture'])
-        print(user_form['persian_culture'])
-        print(user_form['filipino_culture'])
-        print(user_form['filipino_lang'])
-        # username = user_form['username']
-        # password = user_form['password']
-
         user = User()
-
         user.username = utils.id_generator()
         user.set_password("[%J^3k8V")
         if int(user_form['na_culture']) > int(user_form['persian_culture']) and int(user_form['na_culture']) > int(user_form['filipino_culture']):
@@ -138,19 +129,26 @@ def index():
         db.session.add(annotation)
         db.session.commit()
         vid = utils.get_random_video(user.culture, user.get_annotated_videos())
-        completed = utils.get_completed_videos(user.culture, user.get_annotated_videos())
+        completed, all = utils.get_completed_videos(user.culture, user.get_annotated_videos())
         if vid == "FINISHED":
+            gift_card_count = 4
+            new_gift_cards = GiftCard.query.filter_by(used=False).limit(gift_card_count)
+            user.add_gift_codes(new_gift_cards)
+            db.session.commit()
+            for card in new_gift_cards:
+                card.used = True
+                db.session.commit()
             return render_template('thankyou.html')
         print("Annotation %s created :)" % annotation)
 
-        return render_template('index.html', context={'video':vid, 'language': user.language, 'completed': completed,
+        return render_template('index.html', context={'video':vid, 'language': user.language, 'completed': completed, 'all_videos':all,
                                                       'expressions': facial_exprssions_translations})
-
+    # if method is GET:
     vid = utils.get_random_video(user.culture, user.get_annotated_videos())
-    completed = utils.get_completed_videos(user.culture, user.get_annotated_videos())
-    if vid == "FINISHED":
+    completed, all = utils.get_completed_videos(user.culture, user.get_annotated_videos())
+    if vid == "FINISHED" or user.withdraw == True:
         return render_template('thankyou.html')
-    return render_template('index.html', context={'video':vid, 'language': user.language, 'completed': completed,
+    return render_template('index.html', context={'video':vid, 'language': user.language, 'completed': completed, 'all_videos':all,
                                                   'expressions': facial_exprssions_translations})
 
 @app.route("/consent_form")
@@ -176,16 +174,52 @@ def load_user(user_id):
 def gift_codes():
     if request.method == "GET":
         return render_template('thankyou.html')
-    if request.method == "POST":  # if the request is post (i.e. new video annotated?)
+    if request.method == "POST":  # if the request is post (ifrom thank you page)
         # print(request.form)
         err_msg = None
         code = request.form['code']
         if code is not None:
-            user = User.query.get(code)
+            user = User.query.filter_by(username=code).first()
             if user is None:
                 err_msg = "Wrong code!"
-        return render_template('thankyou.html', message=err_msg)
+                return render_template('thankyou.html', message=err_msg)
+            return render_template('gift_cards.html', cards=user.get_gift_codes())
+
+@app.route('/withdraw', methods=["GET", "POST"])
+@login_required
+def withdraw():
+    if request.method == "GET":
+        return render_template('withdraw.html')
+    if request.method == "POST":  # if the request is post (i.e. new video annotated?)
+        # print(request.form)
+        err_msg = None
+
+        code = request.form['code']
+        if code is not None:
+            user = User.query.filter_by(username=code).first()
+            if user is None:
+                err_msg = "Wrong code!"
+                return render_template('withdraw.html', message=err_msg)
+            user.withdraw = True
+            completed, all = utils.get_completed_videos(user.culture, user.get_annotated_videos())
+            gift_card_count = int((len(user.get_annotated_videos()) / all) * 4) # number of gift cards user should get.
+            new_gift_cards = GiftCard.query.filter_by(used=False).limit(gift_card_count).all()
+            user.add_gift_codes(new_gift_cards)
+            db.session.commit()
+            for card in new_gift_cards:
+                card.used = True
+                db.session.commit()
+            # TODO: go to thankyou page and then to gift cards.
+            return render_template('thankyou.html')
 
 if __name__ == '__main__':
     app.debug = True
+    for i in range(10):
+        code = utils.id_generator(size=6)
+        # gift_code = GiftCard()
+        # gift_code.code = code
+        print(code)
+        # db.session.add(gift_code)
     app.run(host='0.0.0.0', port=5000)
+
+

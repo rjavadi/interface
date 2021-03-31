@@ -16,6 +16,7 @@ english_fe = ['Smirk', 'Smiling', 'Calm', 'Snarl', 'Lips pressed togethers', 'Do
               'Shaking head', 'Head turned away', 'Arms crossed', 'Mocking']
 
 
+#TODO: select odd and even videos and shuffle them
 def get_random_video(culture, annotated_videos):
     base_dir = ""
     if culture == "north american":
@@ -47,7 +48,10 @@ def get_completed_videos(culture, annotated_videos):
         base_dir = "filipino/"
     all = len(glob.glob("./static/" + base_dir + "*.mp4"))
     completed = len(set(annotated_videos))
-    return "{} out of {} clips completed.".format(completed, all)
+
+    return completed, all
+
+
 
 
 def id_generator(size=12, chars=string.ascii_uppercase + string.digits):

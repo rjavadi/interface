@@ -10,6 +10,8 @@ class User(UserMixin, db.Model):
     culture = db.Column(db.String)
     language = db.Column(db.String)
     individuality = db.Column(db.Integer)
+    withdraw = db.Column(db.Boolean, default=False)
+    gift_codes = db.Column(db.String)
 
     def set_password(self, password):
         """Create hashed password."""
@@ -38,6 +40,23 @@ class User(UserMixin, db.Model):
         else:
             self.annotated_videos += ';%s' % video_name
 
+
+    #TODO: the size shouldn't be more than 4
+    def add_gift_code(self, code):
+        if self.gift_codes in [None, '']:
+            self.gift_codes = code
+        else:
+            self.gift_codes += ';%s' % code
+
+    def add_gift_codes(self, gift_card_list):
+        for c in gift_card_list:
+            self.add_gift_code(c.code)
+
+    def get_gift_codes(self):
+        if self.gift_codes is not None:
+            return [x for x in self.gift_codes.split(';')]
+        return []
+
     def __repr__(self):
         return '<User {}>'.format(self.username)
 
@@ -62,7 +81,8 @@ class Annotation(db.Model):
     def __repr__(self):
         return '<Annotation {} {}>'.format(self.emotion, self.filename)
 
-#TODO: remove
-class DrawEmail(db.Model):
+
+class GiftCard(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    email = db.Column(db.String, nullable=False)
+    code = db.Column(db.String, nullable=False)
+    used = db.Column(db.Boolean, default=False)
