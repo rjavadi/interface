@@ -20,7 +20,6 @@ with app.app_context():
 
 @app.route('/', methods=["GET", "POST"])
 def initial():
-    # TODO: remove these lines
     # if current_user.is_authenticated:
     #     logout_user()
     return render_template('main.html')
@@ -116,7 +115,7 @@ def index():
 
         social_signals = ','.join([ss for ss in form.getlist('socialsignal')])
         extra_ss = form.get("extra")
-        ## TODO: should be tested
+
         if len(extra_ss) > 0:
             social_signals += ',%s' % extra_ss
         annotation.confidence = form['confidence']
@@ -209,7 +208,7 @@ def withdraw():
             for card in new_gift_cards:
                 card.used = True
                 db.session.commit()
-            # TODO: go to thankyou page and then to gift cards.
+
             return render_template('thankyou.html')
 
 if __name__ == '__main__':
