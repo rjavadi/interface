@@ -127,7 +127,7 @@ def index():
 
         db.session.add(annotation)
         db.session.commit()
-        vid = utils.get_random_video(user.culture, user.get_annotated_videos())
+        vid = utils.get_random_video(user.culture, user.get_annotated_videos(), user.id)
         completed, all = utils.get_completed_videos(user.culture, user.get_annotated_videos())
         if vid == "FINISHED":
             gift_card_count = 4
@@ -143,7 +143,7 @@ def index():
         return render_template('index.html', context={'video':vid, 'language': user.language, 'completed': completed, 'all_videos':all,
                                                       'expressions': facial_exprssions_translations})
     # if method is GET:
-    vid = utils.get_random_video(user.culture, user.get_annotated_videos())
+    vid = utils.get_random_video(user.culture, user.get_annotated_videos(), user.id)
     completed, all = utils.get_completed_videos(user.culture, user.get_annotated_videos())
     if vid == "FINISHED" or user.withdraw == True:
         return render_template('thankyou.html')

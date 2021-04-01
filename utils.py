@@ -16,8 +16,10 @@ english_fe = ['Smirk', 'Smiling', 'Calm', 'Snarl', 'Lips pressed togethers', 'Do
               'Shaking head', 'Head turned away', 'Arms crossed', 'Mocking']
 
 
+
+
 #TODO: select odd and even videos and shuffle them
-def get_random_video(culture, annotated_videos):
+def get_random_video(culture, annotated_videos, user_id):
     base_dir = ""
     if culture == "north american":
         base_dir = "na/"
@@ -25,16 +27,31 @@ def get_random_video(culture, annotated_videos):
         base_dir = "persian/"
     elif culture == "filipino":
         base_dir = "filipino/"
+    even = '02468'
+    odd = '13579'
+    even_files = []
+    odd_files = []
     files = [base_dir + os.path.basename(x) for x in glob.glob("./static/" + base_dir + "*.mp4")]
-
-    files.sort()
+    for f in files:
+        dot_index = f.find('.')
+        last_digit = f[dot_index - 1]
+        if last_digit in even:
+            even_files.append(f)
+        elif last_digit in odd:
+            odd_files.append(last_digit)
+    user_files = None
+    if user_id % 2 == 0:
+        user_files = even_files
+    else:
+        user_files = odd_files
+    user_files.sort()
     annotated_videos.sort()
     # check if user has annotated all files. If yes, return "FINISHED" keyword
-    if files == annotated_videos:
+    if user_files == annotated_videos:
         return "FINISHED"
-    file = random.choice(files)
+    file = random.choice(user_files)
     while file in annotated_videos:
-        file = random.choice(files)
+        file = random.choice(user_files)
     return file
 
 
@@ -46,7 +63,7 @@ def get_completed_videos(culture, annotated_videos):
         base_dir = "persian/"
     elif culture == "filipino":
         base_dir = "filipino/"
-    all = len(glob.glob("./static/" + base_dir + "*.mp4"))
+    all = len(glob.glob("./static/" + base_dir + "*.mp4")) // 2
     completed = len(set(annotated_videos))
 
     return completed, all
