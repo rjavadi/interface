@@ -16,15 +16,24 @@
         <div class="alert alert-success col-lg-8" role="alert">
             <p>Your code is: </p>
             <h3>{{ user_code }}</h3>
-            <em>Make sure to save this code by writing it, taking a photo and saving to your computer.
-                If you lose it, there is no way to recover it.</em>
+
+        </div>
+        <br>
+        <div class="alert alert-warning" role="alert">
+            <p class="text-center">
+                <button type="button" class="btn btn-danger">
+                    <b>Wait!</b>
+                </button>
+            </p>
+            <p class="text-lg"><b>Make sure to save this code by writing it, taking a photo and saving to your computer.
+                If you lose it, there is no way to recover it.</b></p>
         </div>
     </div>
     <div class="row justify-content-center">
-        <span class="badge badge-pill badge-danger">Attention!</span> <br>
-        <p class="text-warning">Make sure you have recorded this code before proceeding to next step</p>
-        <a class="btn btn-primary btn-lg active" href={{ url_for('login') }}  role="button" aria-pressed="true">Next</a>
-{#        <a href= ><button value="Next" class="btn btn-info" /> </a>#}
+
+
+        <button class="btn btn-primary btn-lg active" href={{ url_for('login') }}  role="button" aria-pressed="true">Next</button>
+        <!--<a href= ><button value="Next" class="btn btn-info" /> </a>#}-->
         <!--TODO: this should have a link to login/confirm page -->
     </div>
 </div>
