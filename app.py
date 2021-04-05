@@ -57,6 +57,7 @@ def create_user():
         user_form = request.form
 
         IDV = user_form['IDV']
+
         user = User()
         user.username = utils.id_generator()
         user.set_password("[%J^3k8V")
@@ -73,7 +74,9 @@ def create_user():
             user.language = 'persian'
         elif int(user_form['persian_lang']) < int(user_form['filipino_lang']):
             user.language = 'filipino'
-
+        culture_counter = User.query.filter_by(culture=user.culture).count()
+        print("culture_counter = ", culture_counter)
+        user.id = user.culture + '_%s' % culture_counter
         user.individuality = IDV
         db.session.add(user)
         db.session.commit()

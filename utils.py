@@ -18,7 +18,6 @@ english_fe = ['Smirk', 'Smiling', 'Calm', 'Snarl', 'Lips pressed togethers', 'Do
 
 
 
-#TODO: select odd and even videos and shuffle them
 def get_random_video(culture, annotated_videos, user_id):
     base_dir = ""
     if culture == "north american":
@@ -27,6 +26,8 @@ def get_random_video(culture, annotated_videos, user_id):
         base_dir = "persian/"
     elif culture == "filipino":
         base_dir = "filipino/"
+    # Find the integer part of user id
+    counter = int(user_id[user_id.find('_')+1:])
     even = '02468'
     odd = '13579'
     even_files = []
@@ -38,9 +39,9 @@ def get_random_video(culture, annotated_videos, user_id):
         if last_digit in even:
             even_files.append(f)
         elif last_digit in odd:
-            odd_files.append(last_digit)
+            odd_files.append(f)
     user_files = None
-    if user_id % 2 == 0:
+    if counter % 2 == 0:
         user_files = even_files
     else:
         user_files = odd_files
