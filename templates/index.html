@@ -48,106 +48,12 @@
     {% if feedback %}
         <p class="text-danger float-right">{{ feedback }}</p>
     {% endif %}
-    <h2>Social Signal Label</h2>
     <form method="POST" action="/index">
 
         <div class="col-xs-9">
             Please play the video and check the box of observed facial expressions in the clip: <br>
 
-            <table class="table">
 
-
-                <tr style="background-color:#a8ddf3">
-                    <td>
-                        <label for="social tags"><h5>Select facial expressions:</h5></label><br>
-                    </td>
-                    <td>
-                        <label for="socialsignal1"> <input type="checkbox" id="socialsignal1" name='socialsignal'
-                                                           value='Smirk'> {{ context['expressions'][0] }} </label><br>
-
-                        <label for="socialsignal2"> <input type="checkbox" id="socialsignal2" name='socialsignal'
-                                                           value='Smiling'> {{ context['expressions'][1] }} </label>
-                        <br>
-
-                        <label for="socialsignal3"> <input type="checkbox" id="socialsignal3" name='socialsignal'
-                                                           value='Calm'> {{ context['expressions'][2] }} </label> <br>
-
-                        <label for="socialsignal4"> <input type="checkbox" id="socialsignal4" name='socialsignal'
-                                                           value='Snarl'> {{ context['expressions'][3] }} </label> <br>
-
-                        <label for="socialsignal5"> <input type="checkbox" id="socialsignal5" name='socialsignal'
-                                                           value='Lips pressed togethers'> {{ context['expressions'][4] }}
-                        </label>
-                        <br>
-                        <label for="socialsignal6"> <input type="checkbox" id="socialsignal6" name='socialsignal'
-                                                           value='Downturned lips'> {{ context['expressions'][5] }}
-                        </label>
-                        <br>
-                        <label for="extra">What else do you see (Optional):</label><br>
-
-
-                        <input type="text" id="extra" name="extra"><br>
-
-                    </td>
-                    <td>
-                        <label for="socialsignal7"> <input type="checkbox" id="socialsignal7" name='socialsignal'
-                                                           value='Raised upper lip'> {{ context['expressions'][6] }}
-                        </label>
-                        <br>
-                        <label for="socialsignal8"> <input type="checkbox" id="socialsignal8" name='socialsignal'
-                                                           value='Raised lip corner'> {{ context['expressions'][7] }}
-                        </label>
-                        <br>
-                        <label for="socialsignal9"> <input type="checkbox" id="socialsignal9" name='socialsignal'
-                                                           value='Side eye'> {{ context['expressions'][8] }}</label>
-                        <br>
-                        <label for="socialsignal10"> <input type="checkbox" id="socialsignal10" name='socialsignal'
-                                                            value='Squinting'> {{ context['expressions'][9] }}</label>
-                        <br>
-
-                        <label for="socialsignal11"> <input type="checkbox" id="socialsignal11" name='socialsignal'
-                                                            value='Closing eyes'> {{ context['expressions'][10] }}
-                        </label>
-                        <br>
-
-                        <label for="socialsignal12"> <input type="checkbox" id="socialsignal12" name='socialsignal'
-                                                            value='Raised Eyebrow'> {{ context['expressions'][11] }}
-                        </label>
-                        <br>
-
-                        <label for="socialsignal13"> <input type="checkbox" id="socialsignal13" name='socialsignal'
-                                                            value='Eyebrows pushed together'> {{ context['expressions'][12] }}
-                        </label>
-
-                        <br>
-
-
-                    </td>
-                    <td>
-
-                        <label for="socialsignal14"> <input type="checkbox" id="socialsignal14" name='socialsignal'
-                                                            value='Wrinkled nose'> {{ context['expressions'][13] }}
-                        </label>
-                        <br>
-
-                        <label for="socialsignal15"> <input type="checkbox" id="socialsignal15" name='socialsignal'
-                                                            value='Shaking head'> {{ context['expressions'][14] }}
-                        </label>
-                        <br>
-
-                        <label for="socialsignal16"> <input type="checkbox" id="socialsignal16" name='socialsignal'
-                                                            value='Head turned away'> {{ context['expressions'][15] }}
-                        </label>
-                        <br>
-                        <label for="socialsignal17"> <input type="checkbox" id="socialsignal17" name='socialsignal'
-                                                            value='Arms crossed'> {{ context['expressions'][16] }}
-                        </label>
-                        <br>
-                        <label for="socialsignal18"> <input type="checkbox" id="socialsignal18" name='socialsignal'
-                                                            value='Mocking'> {{ context['expressions'][17] }}</label>
-                    </td>
-                </tr>
-            </table>
         </div>
 
         <div class="row justify-content-center">
@@ -167,23 +73,9 @@
         <label class="form-inline" for="token">Video name: <input type="text" class="form-inline" id="token" readonly
                                                                   name="token" value={{ context['video'] }}> </label>
         <table class="table">
-            <tr style="background-color:#FF9AA2">
 
-                <td> Emotion Observed (Please choose one of the following):</td>
-                <td>
-
-                    <label class="radio-inline" for="Anger"> <input type="radio" id="Anger" name="emotion" value="anger"
-                                                                    required> Anger</label>
-
-                    <label class="radio-inline" for="Contempt"><input type="radio" id="Contempt" name="emotion"
-                                                                      value="contempt" required> Contempt</label>
-
-                    <label class="radio-inline" for="Disgust"> <input type="radio" id="Disgust" name="emotion"
-                                                                      value="disgust" required> Disgust</label><br>
-                </td>
-            </tr>
             <tr>
-                <div class="accordion" id="accordionExample" >
+                <div class="accordion" id="accordionExample">
                     <div class="card">
                         <div class="card-header" id="headingOne">
                             <h2 class="mb-0">
@@ -224,7 +116,8 @@
                                             تحقیر نوعی احساس خود برتربینی است. عموما به صورت احساس برتری ظاهر می
                                             شود اما می تواند زمانی احساس
                                             شود که
-                                            کسی با تمسخر با کسی برخورد می کند. به طور مثال، احساس تحقیر از سمت رییستان.
+                                            کسی با تمسخر یا تحقیر از جایگاه اجتماعی بالاتر با کسی برخورد می کند. به طور
+                                            مثال، احساس تحقیر از سمت رییستان.
                                             یا یک لبخند کنایه
                                             آمیز
                                             از
@@ -244,211 +137,108 @@
 
                                 </ul>
                             </div>
-                            <div class="col">
-                                {% if context['language'] == 'english' %}
-                                    <h4>Anger</h4>
-                                {% endif %}
-                                {% if context['language'] == 'persian' %}
-                                    <h4 class="text-right" dir="rtl">عصبانیت / Anger </h4>
-                                {% endif %}
-                                {% if context['language'] == 'filipino' %}
-                                    <h4>Galit</h4>
-                                {% endif %}
-                                <ul>
-                                    {% if context['language'] == 'english' %}
-                                        <li>Anger can be described as annoyance, frustration, argumentative, bitterness,
-                                            vengefulness, or
-                                            fury.
-                                            Anger can be towards someone or towards yourself.
-                                        </li>
-                                    {% endif %}
-                                    {% if context['language'] == 'persian' %}
-                                        <li class="text-right" dir="rtl">عصبانیت نوعی ناخشنودی، ناکامی، جدال، تلخی،
-                                            انتقام یا خشم است.
-                                        </li>
-                                    {% endif %}
-                                    {% if context['language'] == 'filipino' %}
-                                        <li>Galit ay maaaring ilarawan ng pagkainis, pagkabigo, pagtatalo, kapaitan,
-                                            paghihiganti, o
-                                            pagngangalit. Galit ay maaaring nakaukol sa ibang tao o sa sarili.
-                                        </li>
-                                    {% endif %}
-                                </ul>
-                            </div>
-                            <div class="col">
-                                {% if context['language'] == 'english' %}
-                                    <h4>Disgust</h4>
-                                {% endif %}
-                                {% if context['language'] == 'persian' %}
-                                    <h4 class="text-right" dir="rtl">انزجار/ Disgust </h4>
-                                {% endif %}
-                                {% if context['language'] == 'filipino' %}
-                                    <h4>Pagkasuya</h4>
-                                {% endif %}
-                                <ul>
-                                    {% if context['language'] == 'english' %}
-                                        <li>Disgust can be described as dislike, aversion, distaste, repugnance,
-                                            revulsion, abhorrence, or
-                                            loathing. Disgust is normally brought upon by something that is offensive,
-                                            poisonous or
-                                            contaminated.
-                                        </li>
-                                    {% endif %}
-                                    {% if context['language'] == 'persian' %}
-                                        <li class="text-right" dir="rtl">انزجار را میتوان به صورت دوست نداشتن و بیزاری،
-                                            عدم علاقه، تنفر،
-                                            اشمئزاز، یا بی میلی توصیف کرد.
-                                        </li>
-                                    {% endif %}
-                                    {% if context['language'] == 'filipino' %}
-                                        <li> kaayawan, kawalan ng gana, pagkasuklam, pandidiri,
-                                            pagkapoot o pagkamuhi. Pagkasuya ay karaniwang nagmumula sa bagay na
-                                            nakakasakit, nakakalason o
-                                            kontaminado.
-                                        </li>
-                                    {% endif %}
-                                </ul>
-                            </div>
+
 
                         </div>
                     </div>
+
                 </div>
-</div>
 
 
-</tr>
-<tr>
-    <td colspan="2">
-        <b>Please rate how much you agree or disagree with the following statements regarding the video displayed:</b>
-    </td>
-</tr>
-<tr style="background-color:#FFB7B2">
-    <td> This video depicts the emotion Contempt</td>
-    <td>
-
-        <label class="radio-inline" for="oneC"><input type="radio" id="oneC" name="contempt" value="1"
-                                                      required> 1 (Strongly Agree)</label>
-
-        <label class="radio-inline" for="twoC"><input type="radio" id="twoC" name="contempt" value="2"
-                                                      required> 2 (Somewhat Agree)</label>
-        <label class="radio-inline" for="threeC"><input type="radio" id="threeC" name="contempt" value="3"
-                                                        required> 3 (Neutral)</label>
-        <label class="radio-inline" for="fourC"> <input type="radio" id="fourC" name="contempt" value="4"
-                                                        required> 4 (Somewhat Disagree) </label>
-        <label class="radio-inline" for="fiveC"> <input type="radio" id="fiveC" name="contempt" value="5"
-                                                        required>
-            5 (Strongly Disagree)</label>
-        <br>
-    </td>
-</tr>
-<tr style="background-color:#FFDAC1">
-    <td> This video depicts the emotion Anger</td>
-    <td>
-
-        <label class="radio-inline" for="oneA"><input type="radio" id="oneA" name="anger" value="1"
-                                                      required> 1 (Strongly Agree)</label>
-
-        <label class="radio-inline" for="twoA"> <input type="radio" id="twoA" name="anger" value="2"
-                                                       required> 2 (Somewhat Agree)</label>
-
-        <label class="radio-inline" for="threeA"> <input type="radio" id="threeA" name="anger" value="3"
-                                                         required> 3 (Neutral)</label>
-
-        <label class="radio-inline" for="fourA"> <input type="radio" id="fourA" name="anger" value="4"
-                                                        required> 4 (Somewhat Disagree)</label>
-
-        <label class="radio-inline" for="fiveA"> <input type="radio" id="fiveA" name="anger" value="5"
-                                                        required> 5 (Strongly Disagree)</label>
-        <br>
-    </td>
-</tr>
-<!-- get video name -->
+            </tr>
 
 
-</div>
-<tr style="background-color:#faf8cb">
-    <td> This video depicts the emotion Disgust</td>
-    <td>
-        <label class="radio-inline" for="oneD"><input type="radio" id="oneD" name="disgust" value="1"
-                                                      required> 1 (Strongly Agree)</label>
+            <tr style="background-color:#b7fad5">
 
-        <label class="radio-inline" for="twoD"> <input type="radio" id="twoD" name="disgust" value="2"
-                                                       required> 2 (Somewhat Agree)</label>
+                <td> What is the gender of the actor that you want to annotate for?</td>
+                <td>
 
-        <label class="radio-inline" for="threeD"> <input type="radio" id="threeD" name="disgust" value="3"
-                                                         required> 3 (Neutral)</label>
+                    <label class="radio-inline mx-2" for="male"> <input type="radio" id="male" name="gender" value="male"
+                                                                   required> Male </label>
 
-        <label class="radio-inline" for="fourD"><input type="radio" id="fourD" name="disgust" value="4"
-                                                       required> 4 (Somewhat Disagree)</label>
+                    <label class="radio-inline mx-2" for="female"><input type="radio" id="female" name="gender"
+                                                                    value="female" required> Female </label>
 
-        <label class="radio-inline" for="fiveD"><input type="radio" id="fiveD" name="disgust" value="5"
-                                                       required> 5 (Strongly Disagree)</label>
-        <br>
-    </td>
-</tr>
-<tr style="background-color:#bfec98">
-    <td> This video depicts the emotion Annoyed</td>
-    <td>
-        <label class="radio-inline" for="oneN"><input type="radio" id="oneN" name="annoyed" value="1"
-                                                      required> 1 (Strongly Agree)</label>
+                </td>
+            </tr>
 
-        <label class="radio-inline" for="twoN"> <input type="radio" id="twoN" name="annoyed" value="2"
-                                                       required> 2 (Somewhat Agree)</label>
+            <tr style="background-color:#fff59a">
 
-        <label class="radio-inline" for="threeN"> <input type="radio" id="threeN" name="annoyed" value="3"
-                                                         required> 3 (Neutral)</label>
+                <td> The person in the video is feeling:</td>
+                <td>
 
-        <label class="radio-inline" for="fourN"> <input type="radio" id="fourN" name="annoyed" value="4"
-                                                        required> 4 (Somewhat Disagree)</label>
+                    <label class="checkbox-inline mx-2" for="Anger"> <input type="checkbox" id="Anger" name="emotion" value="anger"
+                                                                    required> Anger   </label>
+                    <label class="checkbox-inline mx-2" for="Contempt"><input type="checkbox" id="Contempt" name="emotion"
+                                                                     value="contempt" required> Contemptuous  </label>
+                    <label class="checkbox-inline mx-2" for="Disgust"> <input type="checkbox" id="Disgust" name="emotion"
+                                                                     value="disgust" required> Disgusted   </label>
+                    <label class="checkbox-inline mx-2" for="Annoyed"> <input type="checkbox" id="Annoyed" name="emotion"
+                                                                      value="annoyed" required> Annoyed   </label>
+                    <label class="checkbox-inline mx-2" for="Hatred"> <input type="checkbox" id="Hatred" name="emotion"
+                                                                       value="hatred" required> Hatred   </label>
+                    <label class="checkbox-inline mx-2" for="Furious"> <input type="checkbox" id="Furious" name="emotion"
+                                                                      value="furious" required> Furious   </label><br>
+                </td>
+            </tr>
 
-        <label class="radio-inline" for="fiveN"> <input type="radio" id="fiveN" name="annoyed" value="5"
-                                                        required> 5 (Strongly Disagree)</label>
-        <br><br>
+            <tr style="background-color: #a9f6f6">
+                <td> Which emoji best depicts that emotion?</td>
+                <td>
+                    <label class="radio-inline mx-2" style="font-size:16pt" for="skeptical"> <input type="radio" name="emoji" value="129320" id="skeptical"
+                                                                   required> &#129320	 </label>
+                    <label class="radio-inline mx-2" style="font-size:16pt" for="smirk"> <input type="radio" name="emoji" value="128527" id="smirk"
+                                                           required> &#128527	 </label>
+                    <label class="radio-inline mx-2" style="font-size:16pt" for="neutral"> <input type="radio" name="emoji" value="neural" id="neutral"
+                                                           required> 😐	 </label>
+                    <label class="radio-inline mx-2" style="font-size:16pt" for="expressionless"> <input type="radio" name="emoji" value="expressionless" id="expressionless"
+                                                                   required> 😑	 </label>
+                    <label class="radio-inline mx-2" style="font-size:16pt" for="unamused"> <input type="radio" name="emoji" value="unamused" id="unamused"
+                                                                   required> 😒	 </label>
+                    <label class="radio-inline mx-2" style="font-size:16pt" for="rollingeyes"> <input type="radio" name="emoji" value="rollingeyes" id="rollingeyes"
+                                                                   required> 🙄	 </label>
+                    <label class="radio-inline mx-2" style="font-size:16pt" for="angry"> <input type="radio" name="emoji" value="angry" id="angry"
+                                                                   required> 😠	 </label>
+                    <label class="radio-inline mx-2" style="font-size:16pt" for="hate"> <input type="radio" name="emoji" value="hatred" id="hate"
+                                                                   required> 😡	 </label>
+                    <label class="radio-inline mx-2" style="font-size:16pt" for="fury"> <input type="radio" name="emoji" value="furious" id="fury"
+                                                                   required> 🤬 </label>
+                    <label class="radio-inline mx-2" style="font-size:16pt" for="vomit"> <input type="radio" name="emoji" value="vomiting" id="vomit"
+                                                                   required> 🤮 </label>
+                    <label class="radio-inline mx-2" style="font-size:16pt" for="nausea"> <input type="radio" name="emoji" value="nauseated" id="nausea"
+                                                                   required> 🤢 </label>
 
-    </td>
-</tr>
-<tr style="background-color:#b7fad5">
+                </td>
+            </tr>
 
-    <td> Actor's gender:</td>
-    <td>
+            <tr style="background-color:#c7ceea">
+                <td>How confident are you about your selections?</td>
+                <td>
 
-        <label class="radio-inline" for="male"> <input type="radio" id="male" name="gender" value="male"
-                                                       required> Male </label>
+                    <label for="one"><input type="radio" id="one" name="confidence" value="1" required> 1 (Not Very
+                        Confident)</label>
 
-        <label class="radio-inline" for="female"><input type="radio" id="female" name="gender"
-                                                        value="female" required> Female </label>
+                    <label for="two"> <input type="radio" id="two" name="confidence" value="2" required> 2 (Somewhat Not
+                        Confident) </label>
 
-    </td>
-</tr>
+                    <label for="three"><input type="radio" id="three" name="confidence" value="3" required> 3 (Neutral)</label>
 
-<tr style="background-color:#c7ceea">
-    <td>How confident are you about your selections?</td>
-    <td>
+                    <label for="four"><input type="radio" id="four" name="confidence" value="4" required> 4 (Somewhat
+                        Confident)</label>
 
-        <label for="one"><input type="radio" id="one" name="confidence" value="1" required> 1 (Not Very
-            Confident)</label>
+                    <label for="five"><input type="radio" id="five" name="confidence" value="5" required> 5 (Very
+                        Confident)</label>
+                    <br>
 
-        <label for="two"> <input type="radio" id="two" name="confidence" value="2" required> 2 (Somewhat Not
-            Confident) </label>
+                </td>
+            </tr>
 
-        <label for="three"><input type="radio" id="three" name="confidence" value="3" required> 3 (Neutral)</label>
+        </table>
+        <div class="row justify-content-center">
+            <input type="submit" value="Submit" class="btn btn-info"/>
+        </div>
 
-        <label for="four"><input type="radio" id="four" name="confidence" value="4" required> 4 (Somewhat
-            Confident)</label>
-
-        <label for="five"><input type="radio" id="five" name="confidence" value="5" required> 5 (Very
-            Confident)</label>
-        <br>
-
-    </td>
-</tr>
-
-</table>
-<div class="row justify-content-center">
-    <input type="submit" value="Submit" class="btn btn-info"/>
-</div>
-
-</form>
+    </form>
 </div>
 
 <footer class="footer">
