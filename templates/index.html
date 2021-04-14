@@ -48,7 +48,7 @@
     {% if feedback %}
         <p class="text-danger float-right">{{ feedback }}</p>
     {% endif %}
-    <form method="POST" action="/index">
+    <form id="questionnaire" method="POST" action="/index">
 
         <div class="col-xs-9">
             Please play the video and check the box of observed facial expressions in the clip: <br>
@@ -165,20 +165,20 @@
             <tr style="background-color:#fff59a">
 
                 <td> The person in the video is feeling:</td>
-                <td>
+                <td id="emotions">
 
                     <label class="checkbox-inline mx-2" for="Anger"> <input type="checkbox" id="Anger" name="emotion" value="anger"
-                                                                    required> Anger   </label>
+                                                                    > Anger   </label>
                     <label class="checkbox-inline mx-2" for="Contempt"><input type="checkbox" id="Contempt" name="emotion"
-                                                                     value="contempt" required> Contemptuous  </label>
+                                                                     value="contempt" > Contemptuous  </label>
                     <label class="checkbox-inline mx-2" for="Disgust"> <input type="checkbox" id="Disgust" name="emotion"
-                                                                     value="disgust" required> Disgusted   </label>
+                                                                     value="disgust" > Disgusted   </label>
                     <label class="checkbox-inline mx-2" for="Annoyed"> <input type="checkbox" id="Annoyed" name="emotion"
-                                                                      value="annoyed" required> Annoyed   </label>
+                                                                      value="annoyed" > Annoyed   </label>
                     <label class="checkbox-inline mx-2" for="Hatred"> <input type="checkbox" id="Hatred" name="emotion"
-                                                                       value="hatred" required> Hatred   </label>
+                                                                       value="hatred" > Hatred   </label>
                     <label class="checkbox-inline mx-2" for="Furious"> <input type="checkbox" id="Furious" name="emotion"
-                                                                      value="furious" required> Furious   </label><br>
+                                                                      value="furious" > Furious   </label><br>
                 </td>
             </tr>
 
@@ -247,4 +247,20 @@
     </div>
 </footer>
 </body>
+<script>
+
+    $(document).ready(function(){
+
+        $( "form" ).submit(function(event) {
+            b = $("[name='emotion']:checkbox:checked").length
+            if (b == 0) {
+                event.preventDefault();
+                alert( "No emotion is selected!");
+            }
+
+        });
+
+
+    });
+</script>
 </html>
