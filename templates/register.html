@@ -7,6 +7,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
             integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
             crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 
 
@@ -45,8 +46,8 @@
                        required>
             </div>
             <div class="form-group col-md-3">
-                <label for="fp_cult">Filipino: </label>
-                <input type="range" value="0" class="form-control-range" id="fp_cult" name="filipino_culture" min="0" max="5"
+                <label for="f_cult">Filipino: </label>
+                <input type="range" value="0" class="form-control-range" id="f_cult" name="filipino_culture" min="0" max="5"
                        required>
             </div>
         </div>
@@ -64,8 +65,8 @@
                        required>
             </div>
             <div class="form-group col-md-3">
-                <label for="filipino_lang">Filipino: </label>
-                <input type="range" value="0" class="form-control-range" id="filipino_lang" name="filipino_lang" min="0" max="5"
+                <label for="f_lang">Filipino: </label>
+                <input type="range" value="0" class="form-control-range" id="f_lang" name="filipino_lang" min="0" max="5"
                        required>
             </div>
         </div>
@@ -133,9 +134,43 @@
       </div>
     </footer>
 </body>
+<script>
+
+    $(document).ready(function(){
+
+        $( "form" ).submit(function(event) {
+            f_cult = $("#f_cult").val()
+            p_cult = $("#pr_cult").val()
+            na_cult = $("#na_cult").val()
+
+            p_lang = $("#pr").val()
+            f_lang = $("#f_lang").val()
+            na_lang = $("#eng_lang").val()
+            console.error("f_cult: ", f_cult)
+            console.log("p_cult: ", p_cult)
+            console.log("na_cult: ", na_cult)
+            console.log("f_lang: ", f_lang)
+            console.log("p_lang: ", p_lang)
+            console.log("na: ", na_lang)
+            {#event.preventDefault();#}
+            not_valid = (f_cult > p_cult && f_lang < p_lang) ||
+                (f_cult < p_cult && f_lang > p_lang) ||
+                (p_cult > na_cult && p_lang < na_lang) ||
+                (f_cult > na_cult && f_lang < na_lang) ||
+                (na_cult > p_cult && na_lang <= p_lang) ||
+                (na_cult > f_cult && na_lang <= f_lang)
+            console.log(not_valid)
+            if (not_valid) {
+                event.preventDefault();
+                alert( "Culture and Language are not consistent!");
+            }
 
 
-<!-- we can add diclaimer here?-->
+        });
+
+
+    });
+</script>
 
 
 </html>

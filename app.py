@@ -91,14 +91,7 @@ def create_user():
 @login_required
 def index():
     user: User = current_user
-    facial_exprssions_translations = None
-    # setting translations for social signals
-    if user.language == 'english':
-        facial_exprssions_translations = utils.english_fe
-    elif user.language == 'persian':
-        facial_exprssions_translations = utils.persian_fe
-    elif user.language == 'filipino':
-        facial_exprssions_translations = utils.filipino_fe
+
 
     if request.method == "POST":  # if the request is post (i.e. new video annotated?)
         # print(request.form)
@@ -107,26 +100,20 @@ def index():
 
 
         annotation: Annotation = Annotation()
-        annotation.emotion = form['emotion']
-        annotation.anger_score = form['anger']
-        annotation.contempt_score = form['contempt']
-        annotation.disgust_score = form['disgust']
-        annotation.annoyed_score = form['annoyed']
+        # annotation.emotion = form.getlist('emotion')
         annotation.gender = form['gender']
         annotation.filename = form.get("token")
         user.add_video(form.get("token"))
 
-        social_signals = ','.join([ss for ss in form.getlist('socialsignal')])
-        extra_ss = form.get("extra")
+        emotions = ','.join([ss for ss in form.getlist('emotion')])
+        annotation.comment = form.get("comment")
+        annotation.emotions = emotions
 
-        if len(extra_ss) > 0:
-            social_signals += ',%s' % extra_ss
         annotation.confidence = form['confidence']
         annotation.annotator_culture = user.culture
         annotation.annotator_language = user.language
         annotation.annotator_individuality = user.individuality
-        annotation.social_signals = social_signals
-
+        annotation.emoji = form['emoji']
 
         db.session.add(annotation)
         db.session.commit()
@@ -143,15 +130,13 @@ def index():
             return render_template('thankyou.html')
         print("Annotation %s created :)" % annotation)
 
-        return render_template('index.html', context={'video':vid, 'language': user.language, 'completed': completed, 'all_videos':all,
-                                                      'expressions': facial_exprssions_translations})
+        return render_template('index.html', context={'video':vid, 'language': user.language, 'completed': completed, 'all_videos':all})
     # if method is GET:
     vid = utils.get_random_video(user.culture, user.get_annotated_videos(), user.id)
     completed, all = utils.get_completed_videos(user.culture, user.get_annotated_videos())
     if vid == "FINISHED" or user.withdraw == True:
         return render_template('thankyou.html')
-    return render_template('index.html', context={'video':vid, 'language': user.language, 'completed': completed, 'all_videos':all,
-                                                  'expressions': facial_exprssions_translations})
+    return render_template('index.html', context={'video':vid, 'language': user.language, 'completed': completed, 'all_videos':all})
 
 @app.route("/consent_form")
 def consent_form():

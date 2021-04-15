@@ -66,20 +66,17 @@ class Annotation(db.Model):
 
     filename = db.Column(db.String, nullable=False)
     video_culture = db.Column(db.String)
-    emotion = db.Column(db.String)
+    emotions = db.Column(db.String)
     gender = db.Column(db.String)
     confidence = db.Column(db.Integer)
-    anger_score = db.Column(db.Integer)
-    contempt_score = db.Column(db.Integer)
-    disgust_score = db.Column(db.Integer)
-    annoyed_score = db.Column(db.Integer)
-    social_signals = db.Column(db.String, default='')
+    comment = db.Column(db.String, default='')
     annotator_culture = db.Column(db.String)
     annotator_language = db.Column(db.String)
+    emoji = db.Column(db.String)
     annotator_individuality = db.Column(db.Integer)
 
     def __repr__(self):
-        return '<Annotation {} {}>'.format(self.emotion, self.filename)
+        return '<Annotation {} {}>'.format(self.emotions, self.filename)
 
 
 class GiftCard(db.Model):
