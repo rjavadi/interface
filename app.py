@@ -61,19 +61,22 @@ def create_user():
         user = User()
         user.username = utils.id_generator()
         user.set_password("[%J^3k8V")
-        if int(user_form['na_culture']) > int(user_form['persian_culture']) and int(user_form['na_culture']) > int(user_form['filipino_culture']):
-            user.culture = 'north american'
-        elif int(user_form['persian_culture']) > int(user_form['filipino_culture']):
-            user.culture = 'persian'
-        elif int(user_form['persian_culture']) < int(user_form['filipino_culture']):
-            user.culture = 'filipino'
-
-        if int(user_form['english_lang']) > int(user_form['persian_lang']) and int(user_form['english_lang']) > int(user_form['filipino_lang']):
+        user.culture = user_form['culture']
+        if user.culture == 'north american':
             user.language = 'english'
-        elif int(user_form['persian_lang']) > int(user_form['filipino_lang']):
-            user.language = 'persian'
-        elif int(user_form['persian_lang']) < int(user_form['filipino_lang']):
+        elif user.culture == 'filipino':
             user.language = 'filipino'
+        if user.culture == 'persian':
+            user.language = 'persian'
+
+        user.na_cult_level =  int(user_form['na_culture'])
+        user.persian_cult_level = int(user_form['persian_culture'])
+        user.filipino_cult_level = int(user_form['filipino_culture'])
+
+        user.english_lang_level = int(user_form['english_lang'])
+        user.persian_lang_level = int(user_form['persian_lang'])
+        user.filipino_lang_level = int(user_form['filipino_lang'])
+
         culture_counter = User.query.filter_by(culture=user.culture).count()
         print("culture_counter = ", culture_counter)
         user.id = user.culture + '_%s' % culture_counter
@@ -113,7 +116,7 @@ def index():
         annotation.annotator_culture = user.culture
         annotation.annotator_language = user.language
         annotation.annotator_individuality = user.individuality
-        annotation.emoji = form['emoji']
+        annotation.emoji = ','.join([ss for ss in form.getlist('emoji')])
 
         db.session.add(annotation)
         db.session.commit()

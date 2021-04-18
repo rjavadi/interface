@@ -9,6 +9,15 @@ class User(UserMixin, db.Model):
     password = db.Column(db.String)
     culture = db.Column(db.String)
     language = db.Column(db.String)
+
+    filipino_lang_level = db.Column(db.Integer)
+    english_lang_level = db.Column(db.Integer)
+    persian_lang_level = db.Column(db.Integer)
+    filipino_cult_level = db.Column(db.Integer)
+    na_cult_level = db.Column(db.Integer)
+    persian_cult_level = db.Column(db.Integer)
+
+    language = db.Column(db.String)
     individuality = db.Column(db.Integer)
     withdraw = db.Column(db.Boolean, default=False)
     gift_codes = db.Column(db.String)

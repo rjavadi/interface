@@ -18,22 +18,26 @@
 
 
     <form action="{{ url_for('create_user') }}" method="POST">
-        <!--<p><b>Please define a simple username. This is only to keep the track of your annotation in case
-            you leave the website and will not affect your anonimity. After submitting this form, you'll be redirected
-            to login page to login.<br>
-            If you cannot think of an anonymous username, you may concatenate your favorite movie/sport team,
-            favorite city and street number of your location like this:
-            gladiator_milan_1205 or realmadrid_london_3241. <br>
-        </b></p>
-        <div class="form-group">
-            <label for="username">Username</label>
-            <input type="text" class="form-control" name="username"
-                   id="username" required>
-            <div class="invalid-feedback">Oops, you missed this one.</div>
-        </div>-->
+        Please select the cultural study you would like to participate in: <br><br>
+        <div class="row justify-content-center">
+            <div class="form-group col-md-3">
+                <label for="na_study">North American (English) </label>
+                <input type="radio" class="radio-inline" id="na_study" name="culture" value="north american" required>
+            </div>
+            <div class="form-group col-md-3">
+                <label for="pr_study">Persian (Persian) </label>
+                <input type="radio" class="radio-inline" id="pr_study" value="persian" name="culture" required>
+            </div>
+            <div class="form-group col-md-3">
+                <label for="f_study">Filipino (Tagalog) </label>
+                <input type="radio" class="radio-inline" id="f_study" value="filipino" name="culture" required>
+            </div>
+        </div>
+        <p><b>By selecting this culture, you confirm that you are able to communicate fluently in that language (written/spoken) and identify with that culture.</b></p>
+        <br>
 
-
-        Please indicate how much you are related to each of these cultures:
+        Please indicate how much you are related to each of these cultures: <br>
+        The slider value increases from left to right.
         <div class="row justify-content-center">
             <div class="form-group col-md-3">
                 <label for="na_cult">North American: </label>
@@ -146,19 +150,12 @@
             p_lang = $("#pr").val()
             f_lang = $("#f_lang").val()
             na_lang = $("#eng_lang").val()
-            console.error("f_cult: ", f_cult)
-            console.log("p_cult: ", p_cult)
-            console.log("na_cult: ", na_cult)
-            console.log("f_lang: ", f_lang)
-            console.log("p_lang: ", p_lang)
-            console.log("na: ", na_lang)
+
             {#event.preventDefault();#}
             not_valid = (f_cult > p_cult && f_lang < p_lang) ||
                 (f_cult < p_cult && f_lang > p_lang) ||
                 (p_cult > na_cult && p_lang < na_lang) ||
                 (f_cult > na_cult && f_lang < na_lang) ||
-                (na_cult > p_cult && na_lang <= p_lang) ||
-                (na_cult > f_cult && na_lang <= f_lang)
             console.log(not_valid)
             if (not_valid) {
                 event.preventDefault();

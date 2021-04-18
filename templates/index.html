@@ -39,9 +39,10 @@
     <h4 class="danger">Please note that all fields are required. In case you faced an error, please take a screenshot
         and let the researchers know. </h4>
     <p>
-        <br>
-        Your progress will be saved and you can come back later if you close the browser's tab or log out. <br>
-
+        <ul>
+    <li>Your progress will be saved and you can come back later if you close the browser's tab or log out.</li>
+    <li>If there are two or more people in a video, choose the one that shows more facial expressions or appears for a longer time.</li>
+        </ul>
     </p>
     <br>
 
@@ -49,12 +50,6 @@
         <p class="text-danger float-right">{{ feedback }}</p>
     {% endif %}
     <form id="questionnaire" method="POST" action="/index">
-
-        <div class="col-xs-9">
-            Please play the video and check the box of observed facial expressions in the clip: <br>
-
-
-        </div>
 
         <div class="row justify-content-center">
             <div class="col-xs-3">
@@ -67,8 +62,9 @@
             </div>
 
         </div>
-        <p class="text-primary text-center">You have annotated {{ context['completed'] }} videos out
-            of {{ context['all_videos'] }} </p>
+    <!--TODO: show dialog if user has annotated half of videos-->
+        <p class="text-primary text-center">You have annotated <span id="completed">{{ context['completed'] }}</span>  videos out
+            of <span id="all" value="{{ context['all_videos'] }}"> {{ context['all_videos'] }}</span>  </p>
         <p class="text-center"><b>Note that videos <u>do not have audio.</u></b></p>
         <label class="form-inline" for="token">Video name: <input type="text" class="form-inline" id="token" readonly
                                                                   name="token" value={{ context['video'] }}> </label>
@@ -179,6 +175,8 @@
                                                                        value="hatred" > Hatred   </label>
                     <label class="checkbox-inline mx-2" for="Furious"> <input type="checkbox" id="Furious" name="emotion"
                                                                       value="furious" > Furious   </label><br>
+                    <label class="checkbox-inline mx-2" for="None"> <input type="checkbox" id="None" name="emotion"
+                                                                      value="none" > None of the above   </label><br>
                 </td>
             </tr>
 
@@ -190,30 +188,29 @@
             <tr style="background-color: #a9f6f6">
                 <td> Which emoji best depicts that emotion?</td>
                 <td>
-                    <label class="radio-inline mx-2" style="font-size:16pt" for="skeptical"> <input type="radio" name="emoji" value="skeptical" id="skeptical"
-                                                                   required> 🤨	 </label>
-                    <label class="radio-inline mx-2" style="font-size:16pt" for="smirk"> <input type="radio" name="emoji" value="smirk" id="smirk"
-                                                           required> 😏	 </label>
-                    <label class="radio-inline mx-2" style="font-size:16pt" for="neutral"> <input type="radio" name="emoji" value="neural" id="neutral"
-                                                           required> 😐	 </label>
-                    <label class="radio-inline mx-2" style="font-size:16pt" for="expressionless"> <input type="radio" name="emoji" value="expressionless" id="expressionless"
-                                                                   required> 😑	 </label>
-                    <label class="radio-inline mx-2" style="font-size:16pt" for="unamused"> <input type="radio" name="emoji" value="unamused" id="unamused"
-                                                                   required> 😒	 </label>
-                    <label class="radio-inline mx-2" style="font-size:16pt" for="rollingeyes"> <input type="radio" name="emoji" value="rollingeyes" id="rollingeyes"
-                                                                   required> 🙄	 </label>
-                    <label class="radio-inline mx-2" style="font-size:16pt" for="angry"> <input type="radio" name="emoji" value="angry" id="angry"
-                                                                   required> 😠	 </label>
-                    <label class="radio-inline mx-2" style="font-size:16pt" for="hate"> <input type="radio" name="emoji" value="hatred" id="hate"
-                                                                   required> 😡	 </label>
-                    <label class="radio-inline mx-2" style="font-size:16pt" for="fury"> <input type="radio" name="emoji" value="furious" id="fury"
-                                                                   required> 🤬 </label>
-                    <label class="radio-inline mx-2" style="font-size:16pt" for="vomit"> <input type="radio" name="emoji" value="vomiting" id="vomit"
-                                                                   required> 🤮 </label>
-                    <label class="radio-inline mx-2" style="font-size:16pt" for="nausea"> <input type="radio" name="emoji" value="nauseated" id="nausea"
-                                                                   required> 🤢 </label>
-                    <label class="radio-inline mx-2" for="none"> <input type="radio" name="emoji" value="none" id="none"
-                                                                   required> None of the above </label>
+                    <label class="checkbox-inline mx-2" for="skeptical"> <input type="checkbox" name="emoji" value="skeptical" id="skeptical">
+                        <img style="width: 50%;height:50%;" src="../static/skeptical.png"> </label>
+                    <label class="checkbox-inline mx-2" for="smirk"> <input type="checkbox" name="emoji" value="smirk" id="smirk">
+                        <img style="width: 50%;height:50%;" src="../static/smirk.png"> </label>
+                    <label class="checkbox-inline mx-2" for="neutral"> <input type="checkbox" name="emoji" value="neutral" id="neutral">
+                        <img style="width: 50%;height:50%;" src="../static/neutral.png"> </label>
+                    <label class="checkbox-inline mx-2" for="expressionless"> <input type="checkbox" name="emoji" value="expressionless" id="expressionless">
+                        <img style="width: 50%;height:50%;" src="../static/expressionless.png"> </label>
+                    <label class="checkbox-inline mx-2" for="unamused"> <input type="checkbox" name="emoji" value="unamused" id="unamused">
+                        <img style="width: 50%;height:50%;" src="../static/unamused.png"> </label>
+                    <label class="checkbox-inline mx-2" for="rollingeyes"> <input type="checkbox" name="emoji" value="rollingeyes" id="rollingeyes">
+                        <img style="width: 50%;height:50%;" src="../static/rollingeyes.png"> </label>
+                    <label class="checkbox-inline mx-2" for="angry"> <input type="checkbox" name="emoji" value="angry" id="angry">
+                        <img style="width: 50%;height:50%;" src="../static/anger.png"> </label>
+                    <label class="checkbox-inline mx-2" for="hate"> <input type="checkbox" name="emoji" value="hatred" id="hate">
+                        <img style="width: 50%;height:50%;" src="../static/hatred.png"> </label>
+                    <label class="checkbox-inline mx-2" for="fury"> <input type="checkbox" name="emoji" value="furious" id="fury">
+                        <img style="width: 50%;height:50%;" src="../static/furious.png"> </label>
+                    <label class="checkbox-inline mx-2" for="vomit"> <input type="checkbox" name="emoji" value="vomiting" id="vomit">
+                        <img style="width: 50%;height:50%;" src="../static/vomit.png"> </label>
+                    <label class="checkbox-inline mx-2" for="nausea"> <input type="checkbox" name="emoji" value="nauseated" id="nausea">
+                        <img style="width: 50%;height:50%;" src="../static/nuaseated.png"> </label>
+                    <label class="checkbox-inline mx-2" for="none"> <input type="checkbox" name="emoji" value="none" id="none"> None of the above </label>
 
                 </td>
             </tr>
@@ -251,6 +248,9 @@
 <footer class="footer">
     <div class="container justify-content-center">
         <p class="text-muted">Simon Fraser University - ROSIE Lab</p>
+        <p>If you have any questions about this study, you may contact the researchers Roya Javadi (<a
+            href="mailto:rjavadi@sfu.ca">rjavadi@sfu.ca</a>) or Emma Hughson (<a href="mailto:ehughson@sfu.ca">ehughson@sfu.ca</a>).
+    </p>
     </div>
 </footer>
 </body>
@@ -258,11 +258,22 @@
 
     $(document).ready(function(){
 
+        completed_count = parseInt($('#completed').text())
+        all = parseInt($('#all').attr('value'))
+
+        if (completed_count > all / 2) {
+            alert( "Take a break! You can come back to this later! :)");
+        }
         $( "form" ).submit(function(event) {
-            b = $("[name='emotion']:checkbox:checked").length
-            if (b == 0) {
+            emotions_checked = $("[name='emotion']:checkbox:checked").length
+            emojis_checked = $("[name='emoji']:checkbox:checked").length
+            if (emotions_checked == 0) {
                 event.preventDefault();
-                alert( "No emotion is selected!");
+                alert( "Please select at least one emotion!");
+            }
+            if (emojis_checked == 0) {
+                event.preventDefault();
+                alert( "Please select at least one emoji!");
             }
 
         });

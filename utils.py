@@ -1,4 +1,4 @@
-import os, glob, random
+import os, glob, random, math
 import string
 import secrets
 
@@ -64,11 +64,10 @@ def get_completed_videos(culture, annotated_videos):
         base_dir = "persian/"
     elif culture == "filipino":
         base_dir = "filipino/"
-    all = len(glob.glob("./static/" + base_dir + "*.mp4")) // 2
+    all = math.ceil(len(glob.glob("./static/" + base_dir + "*.mp4")) / 2)
     completed = len(set(annotated_videos))
 
     return completed, all
-
 
 
 
