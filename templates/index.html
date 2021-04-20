@@ -41,7 +41,7 @@
     <p>
         <ul>
     <li>Your progress will be saved and you can come back later if you close the browser's tab or log out.</li>
-    <li>If there are two or more people in a video, choose the one that shows more facial expressions or appears for a longer time.</li>
+
         </ul>
     </p>
     <br>
@@ -210,12 +210,33 @@
                         <img style="width: 50%;height:50%;" src="../static/vomit.png"> </label>
                     <label class="checkbox-inline mx-2" for="nausea"> <input type="checkbox" name="emoji" value="nauseated" id="nausea">
                         <img style="width: 50%;height:50%;" src="../static/nuaseated.png"> </label>
+                    <label class="checkbox-inline mx-2" for="weary"> <input type="checkbox" name="emoji" value="weary" id="weary">
+                        <img style="width: 50%;height:50%;" src="../static/weary.png"> </label>
+                    <label class="checkbox-inline mx-2" for="imp"> <input type="checkbox" name="emoji" value="smilingimp" id="imp">
+                        <img style="width: 50%;height:50%;" src="../static/smilingimp.png"> </label>
+                    <label class="checkbox-inline mx-2" for="triumph"> <input type="checkbox" name="emoji" value="triumph" id="triumph">
+                        <img style="width: 50%;height:50%;" src="../static/triumph.png"> </label>
                     <label class="checkbox-inline mx-2" for="none"> <input type="checkbox" name="emoji" value="none" id="none"> None of the above </label>
 
                 </td>
             </tr>
 
             <tr style="background-color:#c7ceea">
+                <td>How intense is the facial expression?</td>
+                <td>
+                    From left to right: Not intense at all • Moderately intense • Extremely intense
+                    <div class="form-row justify-content-center">
+                        <div class="col-md-6 mb-3">
+                    <input type="range" value="0" class="form-control-range" id="intense" name="intensity" min="0" max="6"
+                       required>
+                        </div>
+                    </div>
+
+
+                </td>
+            </tr>
+
+            <tr style="background-color:#eac7e1">
                 <td>How confident are you about your selections?</td>
                 <td>
 
@@ -259,9 +280,14 @@
     $(document).ready(function(){
 
         completed_count = parseInt($('#completed').text())
-        all = parseInt($('#all').attr('value'))
+        all = parseInt($('#all').text())
 
-        if (completed_count > all / 2) {
+        console.log((all / 2))
+        console.log(completed_count)
+
+        if (completed_count == (all / 2)) {
+            console.log((all / 2))
+            console.log(completed_count)
             alert( "Take a break! You can come back to this later! :)");
         }
         $( "form" ).submit(function(event) {

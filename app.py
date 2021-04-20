@@ -117,13 +117,14 @@ def index():
         annotation.annotator_language = user.language
         annotation.annotator_individuality = user.individuality
         annotation.emoji = ','.join([ss for ss in form.getlist('emoji')])
+        annotation.intensity = form['intensity']
 
         db.session.add(annotation)
         db.session.commit()
         vid = utils.get_random_video(user.culture, user.get_annotated_videos(), user.id)
         completed, all = utils.get_completed_videos(user.culture, user.get_annotated_videos())
         if vid == "FINISHED":
-            gift_card_count = 4
+            gift_card_count = 2
             new_gift_cards = GiftCard.query.filter_by(used=False).limit(gift_card_count)
             user.add_gift_codes(new_gift_cards)
             db.session.commit()
@@ -192,7 +193,7 @@ def withdraw():
                 return render_template('withdraw.html', message=err_msg)
             user.withdraw = True
             completed, all = utils.get_completed_videos(user.culture, user.get_annotated_videos())
-            gift_card_count = int((len(user.get_annotated_videos()) / all) * 4) # number of gift cards user should get.
+            gift_card_count = int((len(user.get_annotated_videos()) / all) * 2) # number of gift cards user should get.
             new_gift_cards = GiftCard.query.filter_by(used=False).limit(gift_card_count).all()
             user.add_gift_codes(new_gift_cards)
             db.session.commit()

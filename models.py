@@ -83,6 +83,7 @@ class Annotation(db.Model):
     annotator_language = db.Column(db.String)
     emoji = db.Column(db.String)
     annotator_individuality = db.Column(db.Integer)
+    intensity = db.Column(db.Integer)
 
     def __repr__(self):
         return '<Annotation {} {}>'.format(self.emotions, self.filename)
