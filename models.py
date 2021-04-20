@@ -35,7 +35,6 @@ class User(UserMixin, db.Model):
             password,
             method='sha256'
         )
-        print('entered_password: ', entered_password)
         return check_password_hash(self.password, password)
 
     def get_annotated_videos(self):

@@ -29,10 +29,8 @@ def initial():
 def login():
     if current_user.is_authenticated:
         return redirect(url_for('index'))
-        print(current_user)
     form = request.form
     if request.method == "POST":
-        # print("PASSWORD: ", form['password'])
         user = User.query.filter_by(username=form['username']).first()
         if user is None or not user.check_password("[%J^3k8V"):
             flash('Invalid username')
@@ -97,10 +95,7 @@ def index():
 
 
     if request.method == "POST":  # if the request is post (i.e. new video annotated?)
-        # print(request.form)
         form = request.form
-
-
 
         annotation: Annotation = Annotation()
         # annotation.emotion = form.getlist('emotion')
@@ -132,7 +127,6 @@ def index():
                 card.used = True
                 db.session.commit()
             return render_template('thankyou.html')
-        print("Annotation %s created :)" % annotation)
 
         return render_template('index.html', context={'video':vid, 'language': user.language, 'completed': completed, 'all_videos':all})
     # if method is GET:
@@ -205,12 +199,6 @@ def withdraw():
 
 if __name__ == '__main__':
     app.debug = True
-    for i in range(10):
-        code = utils.id_generator(size=6)
-        # gift_code = GiftCard()
-        # gift_code.code = code
-        print(code)
-        # db.session.add(gift_code)
     app.run(host='0.0.0.0', port=5000)
 
 
