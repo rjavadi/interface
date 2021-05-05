@@ -35,7 +35,7 @@ def login():
         if user is None or not user.check_password("[%J^3k8V"):
             flash('Invalid username')
             return render_template('login.html', message="Wrong username.")
-        login_user(user, remember=True)
+        login_user(user, remember=False)
         return redirect(url_for('index'))
     return render_template('login.html')
 
@@ -119,6 +119,7 @@ def index():
         vid = utils.get_random_video(user.culture, user.get_annotated_videos(), user.id)
         completed, all = utils.get_completed_videos(user.culture, user.get_annotated_videos())
         if vid == "FINISHED":
+            user.finished = True
             gift_card_count = 2
             new_gift_cards = GiftCard.query.filter_by(used=False).limit(gift_card_count)
             user.add_gift_codes(new_gift_cards)
@@ -199,6 +200,8 @@ def withdraw():
 
 if __name__ == '__main__':
     app.debug = True
+    for i in range(5):
+        print(utils.id_generator(6))
     app.run(host='0.0.0.0', port=5000)
 
 

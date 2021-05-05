@@ -20,6 +20,7 @@ class User(UserMixin, db.Model):
     language = db.Column(db.String)
     individuality = db.Column(db.Integer)
     withdraw = db.Column(db.Boolean, default=False)
+    finished = db.Column(db.Boolean, default=False)
     gift_codes = db.Column(db.String)
 
     def set_password(self, password):
