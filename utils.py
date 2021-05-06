@@ -69,6 +69,14 @@ def get_completed_videos(culture, annotated_videos):
 
     return completed, all
 
+def count_gift_cards(culture, annotated):
+    completed, all = get_completed_videos(culture, annotated)
+    if completed == all:
+        return 2
+    if completed >= 20:
+        return 1
+    return 0
+
 
 
 def id_generator(size=12, chars=string.ascii_uppercase + string.digits):

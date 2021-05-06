@@ -187,8 +187,8 @@ def withdraw():
                 err_msg = "Wrong code!"
                 return render_template('withdraw.html', message=err_msg)
             user.withdraw = True
-            completed, all = utils.get_completed_videos(user.culture, user.get_annotated_videos())
-            gift_card_count = int((len(user.get_annotated_videos()) / all) * 2) # number of gift cards user should get.
+            gift_card_count = utils.count_gift_cards(user.culture, user.get_annotated_videos())
+            # gift_card_count = int((len(user.get_annotated_videos()) / all) * 2) # number of gift cards user should get.
             new_gift_cards = GiftCard.query.filter_by(used=False).limit(gift_card_count).all()
             user.add_gift_codes(new_gift_cards)
             db.session.commit()
