@@ -31,7 +31,7 @@ def initial():
 def login():
     logging.debug("Login page called")
     if current_user.is_authenticated:
-        logging.debug("User already authenticated ", current_user)
+        logging.debug("User already authenticated ", str(current_user))
         return redirect(url_for('index'))
     form = request.form
     if request.method == "POST":
