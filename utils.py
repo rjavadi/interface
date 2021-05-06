@@ -1,6 +1,7 @@
 import os, glob, random, math
 import string
 import secrets
+import logging
 
 persian_fe = ['پوزخند', 'لبخند', 'خونسرد', 'دندان به هم فشردن', 'لبهای به هم فشرده',
               'جمع کردن لبها به سمت پایین', 'بالابردن لب بالایی','بالابردن گوشه لب',
@@ -16,9 +17,11 @@ english_fe = ['Smirk', 'Smiling', 'Calm', 'Snarl', 'Lips pressed togethers', 'Do
               'Shaking head', 'Head turned away', 'Arms crossed', 'Mocking']
 
 
+logging.basicConfig(level=logging.DEBUG)
 
 
 def get_random_video(culture, annotated_videos, user_id):
+    logging.debug("cuture: {}".format(culture))
     base_dir = ""
     if culture == "north american":
         base_dir = "na/"
@@ -28,6 +31,7 @@ def get_random_video(culture, annotated_videos, user_id):
         base_dir = "filipino/"
     # Find the integer part of user id
     counter = int(user_id[user_id.find('_')+1:])
+    logging.debug("user counter: {}".format(counter))
     even = '02468'
     odd = '13579'
     even_files = []
@@ -40,6 +44,8 @@ def get_random_video(culture, annotated_videos, user_id):
             even_files.append(f)
         elif last_digit in odd:
             odd_files.append(f)
+    logging.debug("odd files: {}".format(odd_files))
+    logging.debug("even files: {}".format(even_files))
     user_files = None
     if counter % 2 == 0:
         user_files = even_files
@@ -48,11 +54,15 @@ def get_random_video(culture, annotated_videos, user_id):
     user_files.sort()
     annotated_videos.sort()
     # check if user has annotated all files. If yes, return "FINISHED" keyword
+    logging.debug("going to compare user files with annoted videos")
     if user_files == annotated_videos:
+        logging.debug("all files annotated by user")
         return "FINISHED"
+    logging.debug("choosing not annotated video for user")
     file = random.choice(user_files)
     while file in annotated_videos:
         file = random.choice(user_files)
+    logging.debug("returning file")
     return file
 
 
