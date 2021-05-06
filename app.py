@@ -98,10 +98,12 @@ def create_user():
 @app.route('/index', methods=["GET", "POST"])
 @login_required
 def index():
+    logging.debug("inside index func")
     user: User = current_user
 
 
     if request.method == "POST":  # if the request is post (i.e. new video annotated?)
+        logging.debug("new annotation requested")
         form = request.form
 
         annotation: Annotation = Annotation()
@@ -134,14 +136,19 @@ def index():
             for card in new_gift_cards:
                 card.used = True
                 db.session.commit()
+            logging.debug("user finished annotating")
             return render_template('thankyou.html')
 
+        logging.debug("getting video for user")
         return render_template('index.html', context={'video':vid, 'language': user.language, 'completed': completed, 'all_videos':all})
     # if method is GET:
+    logging.debug("GET request on index")
     vid = utils.get_random_video(user.culture, user.get_annotated_videos(), user.id)
     completed, all = utils.get_completed_videos(user.culture, user.get_annotated_videos())
     if vid == "FINISHED" or user.withdraw == True:
+        logging.debug("user already finished")
         return render_template('thankyou.html')
+    logging.debug("rendering index.html in get request")
     return render_template('index.html', context={'video':vid, 'language': user.language, 'completed': completed, 'all_videos':all})
 
 @app.route("/consent_form")
