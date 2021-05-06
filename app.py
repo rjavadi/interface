@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, \
     redirect, url_for, flash
+import logging
 from flask_login import LoginManager, login_required, current_user, login_user, logout_user
 
 import utils
@@ -9,6 +10,7 @@ from models import User, Annotation, GiftCard
 ## Setting up app essentials
 app = Flask(__name__, static_folder='./static')
 app.config.from_object('config.Config')
+logging.basicConfig(level=logging.DEBUG)
 # db = SQLAlchemy(app)
 login_manager = LoginManager(app)
 login_manager.login_view = 'login'
@@ -27,16 +29,21 @@ def initial():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+    logging.debug("Login page called")
     if current_user.is_authenticated:
+        logging.debug("User already authenticated ", current_user)
         return redirect(url_for('index'))
     form = request.form
     if request.method == "POST":
         user = User.query.filter_by(username=form['username']).first()
         if user is None or not user.check_password("[%J^3k8V"):
             flash('Invalid username')
+            logging.debug("User not found: ", form['username'])
             return render_template('login.html', message="Wrong username.")
         login_user(user, remember=False)
+        logging.debug("Logged in user ", form['username'])
         return redirect(url_for('index'))
+    logging.debug("Return get")
     return render_template('login.html')
 
 
