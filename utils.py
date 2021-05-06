@@ -52,6 +52,8 @@ def get_random_video(culture, annotated_videos, user_id):
     else:
         user_files = odd_files
 
+    logging.debug("user_files: {}".format(user_files))
+    logging.debug("annotated_videos: {}".format(annotated_videos))
     remaining_videos = list(set(user_files) - set(annotated_videos))
     logging.debug("remaining_videos: {}".format(remaining_videos))
     if len(remaining_videos) == 0:
