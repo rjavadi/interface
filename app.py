@@ -143,8 +143,11 @@ def index():
         return render_template('index.html', context={'video':vid, 'language': user.language, 'completed': completed, 'all_videos':all})
     # if method is GET:
     logging.debug("GET request on index")
+    logging.debug("started to get a random vid")
     vid = utils.get_random_video(user.culture, user.get_annotated_videos(), user.id)
+    logging.debug("after started to get a random vid")
     completed, all = utils.get_completed_videos(user.culture, user.get_annotated_videos())
+    logging.debug("after 2 started to get a random vid")
     if vid == "FINISHED" or user.withdraw == True:
         logging.debug("user already finished")
         return render_template('thankyou.html')
