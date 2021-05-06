@@ -47,7 +47,8 @@ class User(UserMixin, db.Model):
         if self.annotated_videos in [None, '']:
             self.annotated_videos = video_name
         else:
-            self.annotated_videos += ';%s' % video_name
+            if video_name not in self.get_annotated_videos():
+                self.annotated_videos += ';%s' % video_name
 
 
     #TODO: the size shouldn't be more than 4
